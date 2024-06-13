@@ -14,7 +14,7 @@ class AddAboutUsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('about_us')->nullable()->after('same_as_industry');
+            $table->text('about_us')->nullable()->after('user_status');
         });
     }
 

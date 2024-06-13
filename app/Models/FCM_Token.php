@@ -97,117 +97,117 @@ class FCM_Token extends Model
 
     public static function sendFCM_Notification($posted_data = array())
     {
-        if ( !empty($posted_data) ) {
+        // if ( !empty($posted_data) ) {
 
-            if ( !isset($posted_data['title']) )
-                $posted_data['title'] = 'Notification';
+        //     if ( !isset($posted_data['title']) )
+        //         $posted_data['title'] = 'Notification';
 
-            //     $title = 'New Text';
-            // if ( isset($posted_data['title']) && $posted_data['title'] == 'assign-job' )
-            //     $title = 'Job Offer Accepted';
-            // if ( isset($posted_data['title']) && $posted_data['title'] == 'new-bid' )
-            //     $title = 'New Bid Posted';
+        //     //     $title = 'New Text';
+        //     // if ( isset($posted_data['title']) && $posted_data['title'] == 'assign-job' )
+        //     //     $title = 'Job Offer Accepted';
+        //     // if ( isset($posted_data['title']) && $posted_data['title'] == 'new-bid' )
+        //     //     $title = 'New Bid Posted';
 
-            $decode_record= json_decode($posted_data['metadata']);
+        //     $decode_record= json_decode($posted_data['metadata']);
 
-            if(!isset($posted_data['receiver_id'])){
-                $posted_data['receiver_id'] = 0;
-            }
+        //     if(!isset($posted_data['receiver_id'])){
+        //         $posted_data['receiver_id'] = 0;
+        //     }
 
-            $decode_record->receiver_data = '';
-            $posted_data['metadata'] = json_encode($decode_record);
-            $unread_message_count = unread_message_count(['receiver_id'=> $posted_data['receiver_id']]);
+        //     $decode_record->receiver_data = '';
+        //     $posted_data['metadata'] = json_encode($decode_record);
+        //     $unread_message_count = unread_message_count(['receiver_id'=> $posted_data['receiver_id']]);
 
 
-            $message = array(
-                "title"         => $posted_data['title'],
-                "body"          => $posted_data['body'],
-                "metadata"      => $posted_data['metadata'],
-                'detail'        => $posted_data['details'],
-                'badge'         =>  $unread_message_count > 0 ? $unread_message_count  : 1,
-            );
+        //     $message = array(
+        //         "title"         => $posted_data['title'],
+        //         "body"          => $posted_data['body'],
+        //         "metadata"      => $posted_data['metadata'],
+        //         'detail'        => $posted_data['details'],
+        //         'badge'         =>  $unread_message_count > 0 ? $unread_message_count  : 1,
+        //     );
 
-            $fields	= array(
-                'registration_ids'      => $posted_data['registration_ids'],
-                'priority' 		        => 'high',
-                'content-available'     => true,
-                'contentAvailable'     => true,
-                'data' 			        => $message,
-                // 'apns' => [
-                //     // https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig
-                //     'headers' => [
-                //         'apns-priority' => '10',
-                //     ],
-                //     'payload' => [
-                //         'aps' => [
-                //             'alert' => [
-                //                'title' => "Voice call made by ",
-                //                'body' => "Please click to answer the video call",
-                //             ],
-                //             'mutable-content'=>1,
-                //             'content-available'=>1,
-                //             'badge' => 1,
-                //             // 'sound' =>'task_cancel.caf'
-                //         ],
-                //     ],
-                // ],
-                'notification'          => $message
-            );
+        //     $fields	= array(
+        //         'registration_ids'      => $posted_data['registration_ids'],
+        //         'priority' 		        => 'high',
+        //         'content-available'     => true,
+        //         'contentAvailable'     => true,
+        //         'data' 			        => $message,
+        //         // 'apns' => [
+        //         //     // https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig
+        //         //     'headers' => [
+        //         //         'apns-priority' => '10',
+        //         //     ],
+        //         //     'payload' => [
+        //         //         'aps' => [
+        //         //             'alert' => [
+        //         //                'title' => "Voice call made by ",
+        //         //                'body' => "Please click to answer the video call",
+        //         //             ],
+        //         //             'mutable-content'=>1,
+        //         //             'content-available'=>1,
+        //         //             'badge' => 1,
+        //         //             // 'sound' =>'task_cancel.caf'
+        //         //         ],
+        //         //     ],
+        //         // ],
+        //         'notification'          => $message
+        //     );
 
-            $headers	= array(
+        //     $headers	= array(
 
-                // 'Authorization: key='.Constants::FIREBASE_SERVER_API_KEY,
-                'Authorization: key='.Config::get('constants.FIREBASE_SERVER_API_KEY'),
-                'Content-Type: application/json',
-            );
-            // echo '<pre>$fields:'; print_r($fields); echo '</pre>'; exit;
+        //         // 'Authorization: key='.Constants::FIREBASE_SERVER_API_KEY,
+        //         'Authorization: key='.Config::get('constants.FIREBASE_SERVER_API_KEY'),
+        //         'Content-Type: application/json',
+        //     );
+        //     // echo '<pre>$fields:'; print_r($fields); echo '</pre>'; exit;
 
-            #Send Reponse To FireBase Server
-            $ch	= curl_init();
+        //     #Send Reponse To FireBase Server
+        //     $ch	= curl_init();
 
-            curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
-            curl_setopt( $ch,CURLOPT_POST, true );
-            curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
-            curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
-            curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
-            curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+        //     curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+        //     curl_setopt( $ch,CURLOPT_POST, true );
+        //     curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+        //     curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+        //     curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+        //     curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 
-            $response = curl_exec($ch);
-            curl_close($ch);
+        //     $response = curl_exec($ch);
+        //     curl_close($ch);
 
-            // ob_flush();
+        //     // ob_flush();
 
-            if($response === false) {
-                $fcm_response['status'] = false;
-                // die('Curl failed ' . curl_error());
-            }
-            else {
-                $fcm_response['status'] = true;
-            }
+        //     if($response === false) {
+        //         $fcm_response['status'] = false;
+        //         // die('Curl failed ' . curl_error());
+        //     }
+        //     else {
+        //         $fcm_response['status'] = true;
+        //     }
 
-            $fcm_response['response'] = $response;
-            return $fcm_response;
+        //     $fcm_response['response'] = $response;
+        //     return $fcm_response;
 
-            /*
-                firebase sample response_object
-                <pre>Array
-                (
-                    [status] => 1
-                    [response] => {
-                        "multicast_id":3249491517268760704,
-                        "success":0,
-                        "failure":1,
-                        "canonical_ids":0,
-                        "results":[
-                            {
-                                "error":"MessageTooBig"
-                            }
-                        ]
-                    }
-                )
-                </pre>
-            */
-        }
+        //     /*
+        //         firebase sample response_object
+        //         <pre>Array
+        //         (
+        //             [status] => 1
+        //             [response] => {
+        //                 "multicast_id":3249491517268760704,
+        //                 "success":0,
+        //                 "failure":1,
+        //                 "canonical_ids":0,
+        //                 "results":[
+        //                     {
+        //                         "error":"MessageTooBig"
+        //                     }
+        //                 ]
+        //             }
+        //         )
+        //         </pre>
+        //     */
+        // }
     }
 
     public static function saveUpdateFCM_Token($posted_data = array())

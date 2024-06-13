@@ -22,12 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->integer('step')->nullable();
             $table->string('dob',10)->nullable();
-            $table->string('phone_number')->unique();
+            $table->string('phone_number')->nullable();
             $table->integer('gender')->nullable();
             $table->string('profile_image')->nullable();
-            // $table->tinyInteger('user_status')->comment('1=Active, 2=Block')->default(1);
             $table->enum('user_status', ['Active', 'Block'])->default('Active');
-            $table->enum('same_as_industry', ['Yes', 'No'])->default('No');
             $table->enum('register_from', ['Web', 'Facebook', 'Gmail', 'Apple'])->default('Web');
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('theme_mode', ['Light', 'Dark'])->default('Light');

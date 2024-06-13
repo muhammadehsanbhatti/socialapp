@@ -22,15 +22,7 @@ class DatabaseSeeder extends Seeder
             ShortCodeSeeder::class,
             EmailTemplateSeeder::class,
             PassportSeeder::class,
-            GeneralTitleSeeder::class,
-            GoalSeeder::class,
-            GoalItemSeeder::class,
-            IndustryVerticalItemSeeder::class,
-            ProfessionalRoleTypeSeeder::class,
-            ProfRoleTypeItemSeeder::class,
             TermsAndPrivacyPolicySeeder::class,
-            SeedStoreSeeder::class,
-            GeneralTagSeeder::class,
         ]);
     }
 }

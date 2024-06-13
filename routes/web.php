@@ -18,6 +18,8 @@ use App\Http\Controllers\GoalController;
 use App\Http\Controllers\IndustryVerticalItemController;
 use App\Http\Controllers\ProfessionalRoleTypeController;
 use App\Http\Controllers\GeneraltitleController;
+use App\Http\Controllers\UploadVedioController;
+
 use Illuminate\Support\Facades\Artisan;
 
 //
@@ -171,4 +173,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('goal', GoalController::class);
     Route::resource('industry_vertical_item', IndustryVerticalItemController::class);
     Route::resource('professional_role_type', ProfessionalRoleTypeController::class);
+    Route::resource('upload_social_vedio', UploadVedioController::class);
 });

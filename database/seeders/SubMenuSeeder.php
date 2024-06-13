@@ -298,7 +298,31 @@ class SubMenuSeeder extends Seeder
                             'asset_value' => 'list',
                             'created_at' => now(),	
                             'updated_at' => now(),
-                        ]
+                        ],
+                        [
+                            'menu_id' => 11,
+                            'title' => 'Add',
+                            'url' => '/upload_social_vedio/create',
+                            'slug' => 'upload-social-vedio-create',
+                            'sort_order' => 1,
+                            'status' => 'Published',
+                            'asset_type' => 'Icon',
+                            'asset_value' => 'list',
+                            'created_at' => now(),	
+                            'updated_at' => now(),
+                        ],
+                        [
+                            'menu_id' => 11,
+                            'title' => 'List',
+                            'url' => '/upload_social_vedio',
+                            'slug' => 'upload-social-vedio-list',
+                            'sort_order' => 2,
+                            'status' => 'Published',
+                            'asset_type' => 'Icon',
+                            'asset_value' => 'list',
+                            'created_at' => now(),	
+                            'updated_at' => now(),
+                        ],
                     ]);
 
                 } else { echo "<br>[Sub Menus Table is not empty] "; }

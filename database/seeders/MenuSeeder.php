@@ -156,6 +156,17 @@ class MenuSeeder extends Seeder
                             'created_at' => now(),	
                             'updated_at' => now(),
                         ],
+                        [
+                            'title' => 'User upload vedio',
+                            'url' => '/upload_social_vedio',
+                            'slug' => 'upload-social-vedio-list',
+                            'sort_order' => 11,
+                            'status' => 'Published',
+                            'asset_type' => 'Icon',
+                            'asset_value' => 'menu',
+                            'created_at' => now(),	
+                            'updated_at' => now(),
+                        ],
                     ]);
 
                 } else { echo "<br>[Menus Table is not empty] "; }
