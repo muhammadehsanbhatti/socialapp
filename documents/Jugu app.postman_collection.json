@@ -1,0 +1,2843 @@
+{
+	"info": {
+		"_postman_id": "51da7291-96de-4e99-bdd8-768cd29474a7",
+		"name": "Jugu app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "18275350",
+		"_collection_link": "https://dark-comet-169926.postman.co/workspace/My-Workspace~177e6b7d-aef1-4bc5-87fb-f9b5cb37ed61/collection/18275350-51da7291-96de-4e99-bdd8-768cd29474a7?action=share&source=collection_link&creator=18275350"
+	},
+	"item": [
+		{
+			"name": "User Signup",
+			"item": [
+				{
+					"name": "user/signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "step",
+									"value": "1",
+									"description": "Enter Phone Number Step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone_number",
+									"value": "+923475155411",
+									"description": "xxx-xxx-xxxx",
+									"type": "text"
+								},
+								{
+									"key": "step",
+									"value": "6",
+									"description": "first_name and last name  step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "87",
+									"description": "45123211521",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "ahsan@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "Ehsan",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Bhatti",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "other_name",
+									"value": "Muhammadehsan",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "3",
+									"description": "user personal information dob and gender step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dob",
+									"value": "2024",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "2",
+									"description": "1=\"Male\",2=\"Female\",3=\"Other\"",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "4",
+									"description": "Company job title and career seniority step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "company_career_info_id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "company_name",
+									"value": "abcdefgh",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "job_title",
+									"value": "mob app dev",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "5",
+									"description": "Select Professional Role information step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_info_id",
+									"value": "692",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_role_type_id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_role_type_item_id[]",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_role_type_item_id[]",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "6",
+									"description": "Choose Goals",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "7",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "10",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "7",
+									"description": "Educational Information Step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "education_info_id",
+									"value": "13",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "university_school_name",
+									"value": "qwerty",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "degree_discipline",
+									"value": "nothing",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "8",
+									"description": "User Industy Vertical step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_id[]",
+									"value": "1046",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_id[]",
+									"value": "1047",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_vertical_item_id[]",
+									"value": "2550",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_vertical_item_id[]",
+									"value": "2549",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_vertical_item_id[]",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "9",
+									"description": "User Interested Vertical step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "same_industry_vertical",
+									"value": "1",
+									"description": "Active when same record duplicate for intrest",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "intrest_id[]",
+									"value": "24",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "intrest_id[]",
+									"value": "24",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "interested_vertical_item_id[]",
+									"value": "4",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "interested_vertical_item_id[]",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "10",
+									"description": "Specialty And Skills Step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "specialty_skill_id[]",
+									"value": "3593",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "specialty_skill_id[]",
+									"value": "3592",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "11",
+									"description": "upload User profile image step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "profile_image",
+									"type": "file",
+									"src": "/C:/Users/ma496/OneDrive/Desktop/men.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/register"
+					},
+					"response": []
+				},
+				{
+					"name": "dummy_enteries",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "{{jugu_base_url}}/api/dummy_records"
+					},
+					"response": []
+				},
+				{
+					"name": "general_title/store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "testasd",
+									"type": "text"
+								},
+								{
+									"key": "title_status",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/add_general_title"
+					},
+					"response": []
+				},
+				{
+					"name": "general_title",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/general_titles?title_status=4",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"general_titles"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "apps",
+									"disabled": true
+								},
+								{
+									"key": "industry_id",
+									"value": "50,26",
+									"disabled": true
+								},
+								{
+									"key": "title_status",
+									"value": "4",
+									"description": "1=Career Status Position, 2=Professional Role, 3=Educational Information, 4=Specialty Skills, 5=Industry Vertical, 6=User Report"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "goal",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/goals",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"goals"
+							],
+							"query": [
+								{
+									"key": "goal_number",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "educational_info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/education_information?institute_name=b",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"education_information"
+							],
+							"query": [
+								{
+									"key": "institute_name",
+									"value": "b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "degree_info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/degree_information",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"degree_information"
+							],
+							"query": [
+								{
+									"key": "degree_name",
+									"value": "Compu",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Edit profile",
+			"item": [
+				{
+					"name": "profile/update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "+923213213210",
+									"description": "xxx-xxx-xxxx",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "ahsan@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "Ehsan",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Bhatti",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "other_name",
+									"value": "Muhammadehsan",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "3",
+									"description": "user personal information dob and gender step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dob",
+									"value": "2024",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "2",
+									"description": "1=\"Male\",2=\"Female\",3=\"Other\"",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "4",
+									"description": "Company job title and career seniority step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "company_career_info_id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "vizz web solutions",
+									"type": "text"
+								},
+								{
+									"key": "job_title",
+									"value": "mob app dev",
+									"type": "text"
+								},
+								{
+									"key": "step",
+									"value": "5",
+									"description": "Select Professional Role information step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_info_id",
+									"value": "692",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_role_type_id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_role_type_item_id[]",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_role_type_item_id[]",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "6",
+									"description": "Choose Goals",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "7",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "10",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "7",
+									"description": "Educational Information Step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "education_info_id",
+									"value": "13",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "university_school_name",
+									"value": "qwerty",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "degree_discipline",
+									"value": "nothing",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "8",
+									"description": "User Industy Vertical step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_id[]",
+									"value": "1046",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_id[]",
+									"value": "1047",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_vertical_item_id[]",
+									"value": "2550",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_vertical_item_id[]",
+									"value": "2549",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "industry_vertical_item_id[]",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "9",
+									"description": "User Interested Vertical step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "same_industry_vertical",
+									"value": "1",
+									"description": "Active when same record duplicate for intrest",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "intrest_id[]",
+									"value": "24",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "intrest_id[]",
+									"value": "24",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "interested_vertical_item_id[]",
+									"value": "4",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "interested_vertical_item_id[]",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "10",
+									"description": "Specialty And Skills Step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "specialty_skill_id[]",
+									"value": "3593",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "specialty_skill_id[]",
+									"value": "3592",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "step",
+									"value": "11",
+									"description": "upload User profile image step",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "profile_image",
+									"type": "file",
+									"src": "/C:/Users/ma496/OneDrive/Desktop/men.png",
+									"disabled": true
+								},
+								{
+									"key": "about_me",
+									"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. ",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/profile_update"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Connect people",
+			"item": [
+				{
+					"name": "connect_people/store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "connect_user_id",
+									"value": "79",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/connect_people"
+					},
+					"response": []
+				},
+				{
+					"name": "connect_people/update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "status",
+									"value": "Accept",
+									"description": "'Pending', 'Accept', 'Reject'",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/update_connect_people/1"
+					},
+					"response": []
+				},
+				{
+					"name": "connect_list (list of all groups and peoples)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/connect_list?status=",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"connect_list"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "",
+									"description": "('Pending', 'Accept', 'Reject')"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "connect_people",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/connect_people_list",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"connect_people_list"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "jo",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Accept",
+									"description": "('Pending', 'Accept', 'Reject')",
+									"disabled": true
+								},
+								{
+									"key": "connect_type[]",
+									"value": "phonebook",
+									"description": "('phonebook', 'connection')",
+									"disabled": true
+								},
+								{
+									"key": "connect_type[]",
+									"value": "connection",
+									"description": "('phonebook', 'connection')",
+									"disabled": true
+								},
+								{
+									"key": "professional_role[]",
+									"value": "963",
+									"disabled": true
+								},
+								{
+									"key": "professional_role[]",
+									"value": "962",
+									"disabled": true
+								},
+								{
+									"key": "industry_experties[]",
+									"value": "1053",
+									"disabled": true
+								},
+								{
+									"key": "industry_experties[]",
+									"value": "1046",
+									"disabled": true
+								},
+								{
+									"key": "career_status_position[]",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "career_status_position[]",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "age_from",
+									"value": "20",
+									"disabled": true
+								},
+								{
+									"key": "age_to",
+									"value": "23",
+									"disabled": true
+								},
+								{
+									"key": "gender[]",
+									"value": "3",
+									"description": "1=\"Male\",2=\"Female\",3=\"Other\"\t",
+									"disabled": true
+								},
+								{
+									"key": "gender[]",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "location[]",
+									"value": "+1236",
+									"disabled": true
+								},
+								{
+									"key": "check_matched",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "phone_numbers[]",
+									"value": "0311982887821",
+									"disabled": true
+								},
+								{
+									"key": "phone_numbers[]",
+									"value": "031198288789",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "connect_user_list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ehsanss",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone_numbers[]",
+									"value": "+13475379334",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone_numbers[]",
+									"value": "03119828878",
+									"type": "text"
+								},
+								{
+									"key": "phone_numbers[]",
+									"value": "031198288778",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/contact_user_list"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Connections",
+			"item": [
+				{
+					"name": "Connection Bookmark",
+					"item": [
+						{
+							"name": "connection_bookmark",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": "{{jugu_base_url}}/api/connection_bookmark"
+							},
+							"response": []
+						},
+						{
+							"name": "connection_bookmark/store",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_id_to",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{jugu_base_url}}/api/connection_bookmark"
+							},
+							"response": []
+						},
+						{
+							"name": "connection_refuse",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_id_to",
+											"value": "40",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "Pass",
+											"description": "'Pass'",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{jugu_base_url}}/api/connection_refuse"
+							},
+							"response": []
+						},
+						{
+							"name": "remove_connection_bookmark",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": "{{jugu_base_url}}/api/connection_bookmark/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user_info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/user_info?id=129",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"user_info"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "129"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "connect_people",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/connect_people_list",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"connect_people_list"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "A",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Recommended",
+									"description": "('Pending', 'Accept', 'Reject','Recommended','Bookmark')",
+									"disabled": true
+								},
+								{
+									"key": "pass_connection",
+									"value": "True",
+									"disabled": true
+								},
+								{
+									"key": "connect_type[]",
+									"value": "connection",
+									"description": "('phonebook', 'connection')",
+									"disabled": true
+								},
+								{
+									"key": "connect_type[]",
+									"value": "connection",
+									"description": "('phonebook', 'connection')",
+									"disabled": true
+								},
+								{
+									"key": "professional_role[]",
+									"value": "963",
+									"disabled": true
+								},
+								{
+									"key": "professional_role[]",
+									"value": "962",
+									"disabled": true
+								},
+								{
+									"key": "industry_experties[]",
+									"value": "1053",
+									"disabled": true
+								},
+								{
+									"key": "industry_experties[]",
+									"value": "1046",
+									"disabled": true
+								},
+								{
+									"key": "career_status_position[]",
+									"value": "7",
+									"disabled": true
+								},
+								{
+									"key": "career_status_position[]",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "age_from",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "age_to",
+									"value": "23",
+									"disabled": true
+								},
+								{
+									"key": "gender[]",
+									"value": "3",
+									"description": "1=\"Male\",2=\"Female\",3=\"Other\"\t",
+									"disabled": true
+								},
+								{
+									"key": "gender[]",
+									"value": "2  ",
+									"disabled": true
+								},
+								{
+									"key": "location[]",
+									"value": "+1236",
+									"disabled": true
+								},
+								{
+									"key": "check_matched",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "phone_numbers[]",
+									"value": "0311982887821",
+									"disabled": true
+								},
+								{
+									"key": "phone_numbers[]",
+									"value": "031198288789",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "Connected",
+									"description": "'Connected','Not Connected'",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Group message",
+			"item": [
+				{
+					"name": "group",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/group",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"group"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": "12",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "group/store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "first tsting group for messages",
+									"type": "text"
+								},
+								{
+									"key": "member_id[]",
+									"value": "44",
+									"type": "text"
+								},
+								{
+									"key": "member_id[]",
+									"value": "129",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/ma496/OneDrive/Desktop/women.png"
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/group"
+					},
+					"response": []
+				},
+				{
+					"name": "group/update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "my first group test",
+									"type": "text"
+								},
+								{
+									"key": "member_id[]",
+									"value": "80",
+									"type": "text"
+								},
+								{
+									"key": "member_id[]",
+									"value": "113",
+									"type": "text"
+								},
+								{
+									"key": "member_id[]",
+									"value": "19",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Normal",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "is_admin",
+									"value": "True",
+									"description": "'Normal', 'Archived'",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/ma496/OneDrive/Desktop/women.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/group/297"
+					},
+					"response": []
+				},
+				{
+					"name": "delete_conversation (all converstaion delete)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "delete_user_id_to[]",
+									"value": "13",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "delete_user_id_to[]",
+									"value": "undefined",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "group_id[]",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "group_id[]",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/delete_conversation"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy_group_member (destroy group members)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "member_id[]",
+									"value": "75",
+									"type": "text"
+								},
+								{
+									"key": "member_id[]",
+									"value": "18",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/destroy_group_member/114"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "messages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{jugu_base_url}}/api/message?receiver_id=95&sender_id=22",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"message"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Archived",
+									"description": "'Archived'",
+									"disabled": true
+								},
+								{
+									"key": "group_id",
+									"value": "298",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "receiver_id",
+									"value": "95"
+								},
+								{
+									"key": "sender_id",
+									"value": "22"
+								},
+								{
+									"key": "search",
+									"value": "ha test",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "100",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "messages_list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "message_id",
+									"value": "1896",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/message_list"
+					},
+					"response": []
+				},
+				{
+					"name": "specific_general_title_list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "{{jugu_base_url}}/api/specific_general_title_list"
+					},
+					"response": []
+				},
+				{
+					"name": "message/store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "message",
+									"value": "Hello testing",
+									"type": "text"
+								},
+								{
+									"key": "receiver_id",
+									"value": "60",
+									"type": "text"
+								},
+								{
+									"key": "sender_id",
+									"value": "129",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "receiver_id[]",
+									"value": "12",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "receiver_id[]",
+									"value": "77",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "receiver_id",
+									"value": "42",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "group_id",
+									"value": "297",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "message_reply_id",
+									"value": "1909",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "send_file[]",
+									"type": "file",
+									"src": "/C:/Users/ma496/OneDrive/Desktop/women.png",
+									"disabled": true
+								},
+								{
+									"key": "send_file[]",
+									"type": "file",
+									"src": "/C:/Users/ma496/OneDrive/Desktop/women.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/message"
+					},
+					"response": []
+				},
+				{
+					"name": "message_read (all message read and delevered api)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "message_id",
+									"value": "1931",
+									"type": "text"
+								},
+								{
+									"key": "read_message_status",
+									"value": "Read",
+									"description": "'Delivered','Read'",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/message_read"
+					},
+					"response": []
+				},
+				{
+					"name": "forward_message (specific message forward to other)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "message_id[]",
+									"value": "3197",
+									"type": "text"
+								},
+								{
+									"key": "message_id[]",
+									"value": "5",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "group_id[]",
+									"value": "7",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "group_id[]",
+									"value": "231",
+									"type": "text"
+								},
+								{
+									"key": "receiver_id[]",
+									"value": "129",
+									"type": "text"
+								},
+								{
+									"key": "receiver_id[]",
+									"value": "17",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/forward_message"
+					},
+					"response": []
+				},
+				{
+					"name": "message_status (change message status)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "block_user_id_to[]",
+									"value": "28",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "block_user_id_to[]",
+									"value": "16",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "group_id[]",
+									"value": "276",
+									"type": "text"
+								},
+								{
+									"key": "group_id[]",
+									"value": "161",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "Archived",
+									"description": "'Block', 'Archived', 'Report','UnArchived','Unblock'",
+									"type": "text"
+								},
+								{
+									"key": "general_title_id[]",
+									"value": "101",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "general_title_id[]",
+									"value": "48",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "general_title_id[]",
+									"value": "46",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "report_message",
+									"value": "something else",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/message_status"
+					},
+					"response": []
+				},
+				{
+					"name": "delete_messages (with change message delete status)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "message_delete",
+									"value": "For Me",
+									"description": "'For Me', 'For Every One'",
+									"type": "text"
+								},
+								{
+									"key": "message_id[]",
+									"value": "4853",
+									"type": "text"
+								},
+								{
+									"key": "message_id[]",
+									"value": "1893",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/delete_messsages"
+					},
+					"response": []
+				},
+				{
+					"name": "message_delete (delete specific message)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "{{jugu_base_url}}/api/message/6"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FCM Tokens",
+			"item": [
+				{
+					"name": "Save Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "3",
+									"description": "logged-in user",
+									"type": "text"
+								},
+								{
+									"key": "device_id",
+									"value": "15487885",
+									"description": "max:1000 characters",
+									"type": "text"
+								},
+								{
+									"key": "device_token",
+									"value": "d05d650c606cc133c3249656063351f354f3436aeebe9fc72faa2226c77fd353",
+									"description": "max:1000 characters",
+									"type": "text"
+								},
+								{
+									"key": "device_type",
+									"value": "ios",
+									"description": "valid keys are [ios, android]",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{tsa_base_url}}/api/fcm_tokens"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "logged-in user",
+									"type": "text"
+								},
+								{
+									"key": "device_id",
+									"value": "15487885",
+									"description": "max:1000 characters",
+									"type": "text"
+								},
+								{
+									"key": "device_token",
+									"value": "d05d650c606cc133c3249656063351f354f3436aeebe9fc72faa2226c77fd353",
+									"description": "max:1000 characters",
+									"type": "text"
+								},
+								{
+									"key": "device_type",
+									"value": "ios",
+									"description": "valid keys are [ios, android]",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{tsa_base_url}}/api/fcm_tokens/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGYyNWQzMTI4ZWE2N2U2ZDM2MTYyYjA0NzhkMmM0ODkxZTFiODkxZmE2Y2U4ZjkyNzdiZTNmMDU2ZDM0YTg1NGIwZTU3OGQ0YzM1NjgxMDgiLCJpYXQiOjE2NDA3NzAwMzMsIm5iZiI6MTY0MDc3MDAzMywiZXhwIjoxNjcyMzA2MDMzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.Dmz7S2R9oDloWW_n9afv7NIkWkplEbDE39kscwH3qdji4tC-yyfvF94_OMOJS5V-33UaX6ElDhPcINJJxHeG4w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "logged-in user",
+									"type": "text"
+								},
+								{
+									"key": "device_id",
+									"value": "15487885",
+									"description": "max:1000 characters",
+									"type": "text"
+								},
+								{
+									"key": "device_token",
+									"value": "d05d650c606cc133c3249656063351f354f3436aeebe9fc72faa2226c77fd353",
+									"description": "max:1000 characters",
+									"type": "text"
+								},
+								{
+									"key": "device_type",
+									"value": "ios",
+									"description": "valid keys are [ios, android]",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{tsa_base_url}}/api/fcm_tokens/revoke"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{jugu_bearer_token}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "terms_privacy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{jugu_base_url}}/api/terms_privacy?type=Terms Of Use",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"terms_privacy"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Terms Of Use",
+									"description": "'Privacy Policy', 'Terms Of Use'"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "block_users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{jugu_base_url}}/api/block_users"
+					},
+					"response": []
+				},
+				{
+					"name": "terminate_account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "+923999555999",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/terminate_account"
+					},
+					"response": []
+				},
+				{
+					"name": "account_setting",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_phone_number",
+									"value": "+9285412356413",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "+9285412356412",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test@gmail.com",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/account_setting/124"
+					},
+					"response": []
+				},
+				{
+					"name": "update_setting",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile_visibility",
+									"value": "Filter",
+									"description": "'Everyone', 'Privacy Filter', 'None'",
+									"type": "text"
+								},
+								{
+									"key": "connections",
+									"value": "Manual",
+									"description": "'Everyone', 'Manual'",
+									"type": "text"
+								},
+								{
+									"key": "location[]",
+									"value": "+12",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "location[]",
+									"value": "+92",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "professional_role[]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "professional_role[]",
+									"value": "963",
+									"type": "text"
+								},
+								{
+									"key": "career_status_position[]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "career_status_position[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "gender[]",
+									"value": "Male",
+									"type": "text"
+								},
+								{
+									"key": "gender[]",
+									"value": "Female",
+									"type": "text"
+								},
+								{
+									"key": "age_from",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "age_to",
+									"value": "23",
+									"type": "text"
+								},
+								{
+									"key": "pitch_notification",
+									"value": "Uncheck",
+									"description": "'Check', 'Uncheck'",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "pitch_sound",
+									"value": "Sound",
+									"description": "'Sound', 'None', 'Vibration'",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "pitch_flash_notification",
+									"value": "No",
+									"description": "'Yes', 'No'",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "message_notification",
+									"value": "Check",
+									"description": "'Check', 'Uncheck'",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "message_sound",
+									"value": "None",
+									"description": "'Sound', 'None', 'Vibration'",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "message_flash_notification",
+									"value": "Yes",
+									"description": "'Yes', 'No'",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/account_setting"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pitch",
+			"item": [
+				{
+					"name": "Pitch Bookmark",
+					"item": [
+						{
+							"name": "pitch_bookmark",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": "{{jugu_base_url}}/api/pitch_bookmark"
+							},
+							"response": []
+						},
+						{
+							"name": "pitch_bookmark/store",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "pitch_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{jugu_base_url}}/api/pitch_bookmark"
+							},
+							"response": []
+						},
+						{
+							"name": "remove_pitch_bookmark",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": "{{jugu_base_url}}/api/pitch_bookmark/4"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pitch Reply",
+					"item": [
+						{
+							"name": "pitch_reply",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{jugu_base_url}}/api/get_pitch_reply?pitch_id=1",
+									"host": [
+										"{{jugu_base_url}}"
+									],
+									"path": [
+										"api",
+										"get_pitch_reply"
+									],
+									"query": [
+										{
+											"key": "pitch_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "general_tags",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": "{{jugu_base_url}}/api/get_general_tag"
+							},
+							"response": []
+						},
+						{
+							"name": "pitch/reply",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "pitch_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "reply_message",
+											"value": "this is my reply pitch reply",
+											"type": "text"
+										},
+										{
+											"key": "pitch_reply_id",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{jugu_base_url}}/api/pitch_reply"
+							},
+							"response": []
+						},
+						{
+							"name": "pitch/share",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "pitch_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "share_to[]",
+											"value": "Whattsapp",
+											"type": "text"
+										},
+										{
+											"key": "share_to[]",
+											"value": "Facebook",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": "{{jugu_base_url}}/api/pitch_share"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "pitch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{jugu_base_url}}/api/pitch?id=1",
+							"host": [
+								"{{jugu_base_url}}"
+							],
+							"path": [
+								"api",
+								"pitch"
+							],
+							"query": [
+								{
+									"key": "connection_list",
+									"value": "Not In My Connection",
+									"description": "'My Connection', 'Pending Connection','Not In My Connection'",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "Test",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "pitch_tag_title",
+									"value": "Europe",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pitch/store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "New pitch",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "New Pitch Description",
+									"type": "text"
+								},
+								{
+									"key": "pitch_tag[]",
+									"value": "Bank finances report",
+									"type": "text"
+								},
+								{
+									"key": "pitch_tag[]",
+									"value": "Other",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "connection_status",
+									"value": "anyone",
+									"description": "'anyone', 'my_connection', 'filter'",
+									"type": "text"
+								},
+								{
+									"key": "location[]",
+									"value": "+12",
+									"type": "text"
+								},
+								{
+									"key": "location[]",
+									"value": "+92",
+									"type": "text"
+								},
+								{
+									"key": "professional_role[]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "professional_role[]",
+									"value": "963",
+									"type": "text"
+								},
+								{
+									"key": "career_status_position[]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "career_status_position[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "goal_item_id[]",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "gender[]",
+									"value": "Male",
+									"type": "text"
+								},
+								{
+									"key": "gender[]",
+									"value": "Female",
+									"type": "text"
+								},
+								{
+									"key": "age_from",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "age_to",
+									"value": "23",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "Published",
+									"description": "'Published', 'Draft'",
+									"type": "text"
+								},
+								{
+									"key": "upload_file[]",
+									"type": "file",
+									"src": "/C:/Users/ma496/OneDrive/Desktop/Recording #1.mp4"
+								},
+								{
+									"key": "upload_file[]",
+									"type": "file",
+									"src": "/C:/Users/ma496/OneDrive/Desktop/women.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{jugu_base_url}}/api/pitch"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{jugu_bearer_token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
