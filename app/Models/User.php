@@ -105,67 +105,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(ConnectPeople::class, 'user_id', 'id')->where('connect_user_id',Auth::user()->id);
     }
-    // public function connect_people_user_id()
-    // {
-    //     if(Auth::check()){
 
-
-
-    //         if($this->hasOne(ConnectPeople::class, 'user_id', 'id')->where('connect_user_id',Auth::user()->id)){
-    //             return $this->hasOne(ConnectPeople::class, 'user_id', 'id')->where('connect_user_id',Auth::user()->id);
-    //         }else{
-    //             return $this->hasOne(ConnectPeople::class, 'connect_user_id', 'id')->where('user_id',Auth::user()->id);
-    //         }
-
-    //         // return $this->hasOne(ConnectPeople::class, 'connect_user_id,user_id', 'id,id')->where('connect_user_id',Auth::user()->id)->orWhere('user_id',Auth::user()->id);
-    //         // $test = $this->hasOne(ConnectPeople::class, 'user_id', 'id')->where('connect_user_id',Auth::user()->id);
-
-    //         // echo '<pre>'; print_r($test); echo '</pre>'; exit;
-    //         // ->orWhere('user_id',Auth::user()->id);
-    //     }else{
-    //         return $this->hasOne(ConnectPeople::class, 'connect_user_id', 'id');
-    //     }
-    // }
-
-    // public function connect_pending_people()
-    // {
-    //     if(Auth::check()){
-    //         return $this->hasOne(ConnectPeople::class, 'user_id', 'id')->where('connect_user_id',Auth::user()->id)->where('status','Pending');
-    //     }else{
-    //         return $this->hasOne(ConnectPeople::class, 'connect_user_id', 'id');
-    //     }
-    // }
-
-    // public function connect_accept_people()
-    // {
-    //     if(Auth::check()){
-
-    //         return $this->hasOne(ConnectPeople::class)->where('user_id',Auth::user()->id)->orwhere('connect_user_id',Auth::user()->id)->where('status','Accept');
-
-
-    //     }else{
-    //         return $this->hasOne(ConnectPeople::class, 'connect_user_id', 'id');
-    //     }
-    // }
-
-
-    // public function getConectPeopleStatusAttribute()
-    // {
-    //     $status = null;
-    //     if(Auth::check()){
-    //         $status = 'connect';
-    //         $data = collect([$this->connect_user_id, $this->connect_people_user_id]);
-    //         $data = $data->ToArray();
-    //         if(isset($data[0]['status'])){
-    //             $status = $data[0]['status'];
-    //         }
-    //         if(isset($data[1]['status'])){
-    //             $status = $data[1]['status'];
-    //         }
-    //     }
-    //     return $status;
-    //     // return $data->unique();
-    // }
     public function getConectPeopleCountAttribute()
     {
         $ConnectPeopleObj = new \App\Models\ConnectPeople;
@@ -224,39 +164,12 @@ class User extends Authenticatable
         // ->with('professionalRoleTypeItem');
         // return $this->hasOne(UserProRoleTypeItem::class, 'user_id')->with('professionalRoleTypeItem','generalTitle','proRoleType');
     }
-    function userGoal(){
-        return $this->hasMany(UserGoalItem::class, 'user_id')->with('goalItem');
-    }
-    function userEducationalInformation(){
-        return $this->hasMany(UserEducationalInformation::class, 'user_id')->with('generalTitle');
-    }
-    function userSpeciality(){
-        return $this->hasMany(UserSpecialty::class, 'user_id')->with('generalTitle');
-    }
-    function userIndustry(){
-        return $this->hasMany(UserIndustyVerticalItem::class, 'user_id')->where('intrested_vertical','Industry')->with('generalTitle')->with('industryVerticalItem');
-    }
-    function userInterest(){
-        return $this->hasMany(UserIndustyVerticalItem::class, 'user_id')->where('intrested_vertical','Interest')->with('generalTitle')->with('industryVerticalItem');
-    }
-    function userSetting(){
-        return $this->hasOne(Setting::class, 'user_id');
-    }
+
 
 
     public static function getUser($posted_data = array())
     {
         $query = User::latest()
-                        ->with('companyCareerInfo')
-                        ->with('userProfRoleTypeItem')
-                        ->with('userGoal')
-                        ->with('userEducationalInformation')
-                        ->with('userSpeciality')
-                        ->with('userIndustry')
-                        ->with('userInterest')
-                        // ->with('connect_people_user_id')
-                        // ->with('yourBookMarkUser')
-                        ->with('bookMarkUser')
                         ->with('userSetting')
         ;
         // if (isset($posted_data['general_title_response'])) {
@@ -436,9 +349,6 @@ class User extends Authenticatable
             $query = $query->whereIn('users.id', $posted_data['user_ids']);
         }
 
-        if (isset($posted_data['same_as_industry'])) {
-            $query = $query->where('users.same_as_industry', $posted_data['same_as_industry']);
-        }
 
         if (isset($posted_data['search']) && !empty($posted_data['search'])) {
             $query = $query->where(
@@ -464,163 +374,13 @@ class User extends Authenticatable
                             $query->where('users.last_name','like', '%' .$search2. '%');
                         }
                     })
-
-                    // ->orwhere('users.last_name','like', '%' .@$search2. '%')
-
-                    ->orwhere('connect_people.connect_type','like', '%' . $str. '%')
-                    // ->orwhere('connect_people.status','like', '%' . $str. '%')
-
-                    ->orwhere('user_career_status_positions.company_name','like', '%' . $str. '%')
-                    ->orwhere('user_career_status_positions.job_title','like', '%' . $str. '%')
-                    ->orwhere('gt1.title','like', '%' . $str. '%')
-
-                    ->orwhere('user_educational_information.university_school_name','like', '%' . $str. '%')
-                    ->orwhere('user_educational_information.degree_discipline','like', '%' . $str. '%')
-                    ->orwhere('gt2.title','like', '%' . $str. '%')
-
-
-                    ->orwhere('prof_role_types.title','like', '%' . $str. '%')
-                    ->orwhere('pro_role_type_items.title','like', '%' . $str. '%')
-                    ->orwhere('gt3.title','like', '%' . $str. '%')
-
-                    ->orwhere('industry_vertical_items.title','like', '%' . $str. '%')
-                    ->orwhere('gt4.title','like', '%' . $str. '%')
-
-
-                    ->orwhere('goal_items.title','like', '%' . $str. '%')
                     ;
 
             });
         }
 
-        // if(isset($posted_data['age_from']) && isset($posted_data['age_to'])){
-
-        //     $posted_data['age_from']--;
-        //     $posted_data['age_to']--;
-        //     $posted_data['age_from'] = date('Y', strtotime('-'.$posted_data['age_from'].' years'));
-        //     $posted_data['age_to'] = date('Y', strtotime('-'.$posted_data['age_to'].' years'));
-
-        //     // $query->selectRaw("users.*, TIMESTAMPDIFF(YEAR, users.dob, NOW()) as age");
-        //     // $query->whereRaw("(YEAR(NOW()) - YEAR(`dob`)) BETWEEN ".$posted_data['age_from']." AND ".$posted_data['age_to']);
-        //     // $query->whereRaw(" `dob` BETWEEN ".$posted_data['age_from']." AND ".$posted_data['age_to']);
-
-        //     $query = $query->where(
-        //         function ($query) use ($posted_data) {
-        //             return $query
-        //                 ->where('users.dob', '<=', $posted_data['age_from'])
-        //                 ->where('users.dob', '>=', $posted_data['age_to']);
-        //         });
-
-        // }
-        if (isset($posted_data['goal_item_id'])) {
-            $query = $query->whereIn('user_goal_items.goal_item_id', $posted_data['goal_item_id']);
-        }
-        if (isset($posted_data['user_id_to'])) {
-            $query = $query->whereIn('connection_book_marks.user_id_to', $posted_data['user_id_to']);
-        }
-        if (isset($posted_data['type'])) {
-            $query = $query->where('connect_people.status', $posted_data['type']);
-        }
-        if (isset($posted_data['user_id'])) {
-            $query = $query->where('connect_people.user_id', $posted_data['user_id']);
-        }
-        if (isset($posted_data['status_is_null'])) {
-            $query = $query->where(
-                function ($query) use ($posted_data) {
-                    return $query
-                        ->where('connect_people.status', $posted_data['status'])
-                        ->orwhereNull('connect_people.status');
-                });
-        }else{
-
-            if (isset($posted_data['status']) && $posted_data['status'] != 'Recommended' && $posted_data['status'] != 'Bookmark') {
-                $query = $query->where('connect_people.status', $posted_data['status']);
-            }
-        }
-        if (isset($posted_data['connect_user_id'])) {
-            $query = $query->where('connect_people.connect_user_id', $posted_data['connect_user_id']);
-        }
-        if (isset($posted_data['connect_ids'])) {
-
-            // $query = $query->where(
-            //     function ($query) use ($posted_data) {
-            //         return $query
-            //             ->where('connect_people.connect_user_id', $posted_data['connect_ids'])
-            //             ->orWhere('connect_people.user_id' , $posted_data['connect_ids']);
-            //     });
 
 
-                $query =  $query->orwhere('connect_people.connect_user_id', $posted_data['connect_ids'])
-                                ->orWhere('connect_people.user_id', $posted_data['connect_ids']);
-        }
-
-        if (isset($posted_data['check_connect_id'])) {
-            $query = $query->where(
-                function ($query) use ($posted_data) {
-                    return $query
-                        ->where('connect_people.user_id', $posted_data['check_connect_id'])
-                        ->orwhere('connect_people.connect_user_id', $posted_data['check_connect_id']);
-                });
-        }
-
-
-        if (isset($posted_data['connect_user_id_in'])) {
-            $query = $query->whereIn('connect_people.user_id', $posted_data['connect_user_id_in']);
-        }
-        if (isset($posted_data['connect_type'])) {
-            $query = $query->whereIn('connect_people.connect_type', $posted_data['connect_type']);
-        }
-        // if (isset($posted_data['status'])) {
-        //     $query = $query->where('connect_people.status', $posted_data['status']);
-        // }
-        if (isset($posted_data['professional_role'])) {
-            $query = $query->whereIn('user_pro_role_type_items.general_title_id', $posted_data['professional_role']);
-        }
-        if (isset($posted_data['industry_experties'])) {
-            $query = $query->whereIn('user_industy_vertical_items.general_title_id', $posted_data['industry_experties']);
-        }
-        if (isset($posted_data['career_status_position'])) {
-            $query = $query->whereIn('user_career_status_positions.general_title_id', $posted_data['career_status_position']);
-        }
-
-
-        // Connect type
-        if (!isset($posted_data['connect_people_connect_user_id_left_join']) || (isset($posted_data['connect_people_connect_user_id_left_join']) && $posted_data['connect_people_connect_user_id_left_join'])) {
-            $query->leftjoin('connect_people', 'connect_people.connect_user_id', '=', 'users.id');
-        }
-        if (isset($posted_data['connect_people_user_id_left_join']) && $posted_data['connect_people_user_id_left_join']) {
-            $query->leftjoin('connect_people', 'connect_people.user_id', '=', 'users.id');
-        }
-
-
-        // Join for career status position
-        $query->leftjoin('user_career_status_positions', 'user_career_status_positions.user_id', '=', 'users.id');
-        $query->leftjoin('general_titles as gt1', 'gt1.id', '=', 'user_career_status_positions.general_title_id');
-
-        // Join for Educational information
-        $query->leftjoin('user_educational_information', 'user_educational_information.user_id', '=', 'users.id');
-        $query->leftjoin('general_titles as gt2', 'gt2.id', '=', 'user_educational_information.general_title_id');
-
-        // Joins for professional Roles
-        $query->leftjoin('user_pro_role_type_items', 'user_pro_role_type_items.user_id', '=', 'users.id');
-        $query->leftjoin('prof_role_types', 'prof_role_types.id', '=', 'user_pro_role_type_items.prof_role_type_id');
-        $query->leftjoin('pro_role_type_items', 'pro_role_type_items.pro_role_type_id', '=', 'prof_role_types.id');
-        $query->leftjoin('general_titles as gt3', 'gt3.id', '=', 'user_pro_role_type_items.general_title_id');
-
-        // Industry verticals
-        $query->leftjoin('user_industy_vertical_items', 'user_industy_vertical_items.user_id', '=', 'users.id');
-        $query->leftjoin('industry_vertical_items', 'industry_vertical_items.id', '=', 'user_industy_vertical_items.industry_vertical_item_id');
-        $query->leftjoin('general_titles as gt4', 'gt4.id', '=', 'user_industy_vertical_items.general_title_id');
-
-        // User Goals
-        $query->leftjoin('user_goal_items', 'user_goal_items.user_id', '=', 'users.id');
-        $query->leftjoin('goal_items', 'user_goal_items.goal_item_id', '=', 'goal_items.id');
-
-        // Connect people
-        $query->leftjoin('connection_book_marks', 'connection_book_marks.user_id_to', '=', 'users.id');
-
-        // Refuse connection
-        $query->leftjoin('user_refuse_connections', 'user_refuse_connections.user_id_from', '=', 'users.id');
 
 
 

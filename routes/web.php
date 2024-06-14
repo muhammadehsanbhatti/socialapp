@@ -13,12 +13,8 @@ use App\Http\Controllers\AssignPermissionController;
 use App\Http\Controllers\SubMenuController;
 // use App\Http\Controllers\SubCategorieController;
 use App\Http\Controllers\ImportExcelFileController;
-// use App\Http\Controllers\ContactController;
-use App\Http\Controllers\GoalController;
-use App\Http\Controllers\IndustryVerticalItemController;
-use App\Http\Controllers\ProfessionalRoleTypeController;
 use App\Http\Controllers\GeneraltitleController;
-use App\Http\Controllers\UploadVedioController;
+use App\Http\Controllers\UploadVideoController;
 
 use Illuminate\Support\Facades\Artisan;
 
@@ -138,7 +134,7 @@ Route::post('/resetPassword', [UserController::class, 'accountResetPassword'])->
 // Route::post('contact-us', [ContactController::class, 'store'])->name('contact.us.store');
 
 Route::middleware(['auth'])->group(function () {
-    
+
     Route::get('/app-chat', [UserController::class, 'appChat']);
 
     Route::post('/blockUnblockUser', [UserController::class, 'blockUnblockUser']);
@@ -148,12 +144,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [UserController::class, 'dashboard']);
     Route::get('/editProfile', [UserController::class, 'editProfile']);
-    Route::get('/prof_add_item/{id}', [ProfessionalRoleTypeController::class, 'add_items']);
+
     // Route::get('contact-us-list', [ContactController::class, 'contactUsList']);
     Route::post('export', [UserController::class, 'export_data'])->name('export_data_to_file');
-    Route::post('/delete_goal_item/{id}', [GoalController::class, 'destroy_goal_item']);
-    Route::post('professional_role_type_items', [ProfessionalRoleTypeController::class, 'professional_role_type_item']);
-    Route::post('/destroy_professional_role_type_items/{id}', [ProfessionalRoleTypeController::class, 'destroy_prof_rote_type_item']);
+
 
 
     //resouce routes
@@ -170,8 +164,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('short_codes', EmailShortCodeController::class);
     Route::resource('import_excel', ImportExcelFileController::class);
     Route::resource('general_title', GeneraltitleController::class);
-    Route::resource('goal', GoalController::class);
-    Route::resource('industry_vertical_item', IndustryVerticalItemController::class);
-    Route::resource('professional_role_type', ProfessionalRoleTypeController::class);
-    Route::resource('upload_social_vedio', UploadVedioController::class);
+    Route::resource('upload_social_video', UploadVideoController::class);
 });

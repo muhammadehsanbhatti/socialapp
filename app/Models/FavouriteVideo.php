@@ -5,31 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PitchesBookMark extends Model
+class FavouriteVideo extends Model
 {
     use HasFactory;
-    // public function pitchData()
-    // {
-    //     return $this->belongsTo(Pitch::class, 'pitch_id');
-    // }
 
-    public static function getPitchesBookMark($posted_data = array())
+    public static function getFavouriteVideo($posted_data = array())
     {
-        $query = PitchesBookMark::latest()
-                    // ->with('pitchData')
+        $query = FavouriteVideo::latest()
         ;
 
         if (isset($posted_data['id'])) {
-            $query = $query->where('pitches_book_marks.id', $posted_data['id']);
+            $query = $query->where('favorite_vedios.id', $posted_data['id']);
         }
-        if (isset($posted_data['user_id'])) {
-            $query = $query->where('pitches_book_marks.user_id', $posted_data['user_id']);
+        if (isset($posted_data['upload_vedio_id'])) {
+            $query = $query->where('favorite_vedios.upload_vedio_id', $posted_data['upload_vedio_id']);
         }
-        if (isset($posted_data['pitch_id'])) {
-            $query = $query->where('pitches_book_marks.pitch_id', $posted_data['pitch_id']);
+        if (isset($posted_data['fav_count'])) {
+            $query = $query->where('favorite_vedios.fav_count', $posted_data['fav_count']);
+        }
+        if (isset($posted_data['share_count'])) {
+            $query = $query->where('favorite_vedios.share_count', $posted_data['share_count']);
+        }
+        if (isset($posted_data['download_count'])) {
+            $query = $query->where('favorite_vedios.download_count', $posted_data['download_count']);
         }
 
-        $query->select('pitches_book_marks.*');
+        $query->select('favorite_vedios.*');
 
         $query->getQuery()->orders = null;
         if (isset($posted_data['orderBy_name'])) {
@@ -60,36 +61,41 @@ class PitchesBookMark extends Model
         return $result;
     }
 
-    public function saveUpdatePitchesBookMark($posted_data = array())
+    public function saveUpdateFavouriteVideo($posted_data = array())
     {
         if (isset($posted_data['update_id'])) {
-            $data = PitchesBookMark::find($posted_data['update_id']);
+            $data = FavouriteVideo::find($posted_data['update_id']);
         } else {
-            $data = new PitchesBookMark;
+            $data = new FavouriteVideo;
         }
 
-        if (isset($posted_data['user_id'])) {
-            $data->user_id = $posted_data['user_id'];
+        if (isset($posted_data['upload_vedio_id'])) {
+            $data->upload_vedio_id = $posted_data['upload_vedio_id'];
         }
-        if (isset($posted_data['pitch_id'])) {
-            $data->pitch_id = $posted_data['pitch_id'];
+        if (isset($posted_data['fav_count'])) {
+            $data->fav_count = $posted_data['fav_count'];
         }
-
+        if (isset($posted_data['share_count'])) {
+            $data->share_count = $posted_data['share_count'];
+        }
+        if (isset($posted_data['download_count'])) {
+            $data->download_count = $posted_data['download_count'];
+        }
         $data->save();
-        $data = PitchesBookMark::getPitchesBookMark([
+        $data = FavouriteVideo::getFavouriteVideo([
             'detail' => true,
             'id' => $data->id,
         ]);
         return $data;
     }
-    public static function deletePitchesBookMark($id=0, $where_posted_data = array())
+    public static function deleteFavouriteVideo($id=0, $where_posted_data = array())
     {
         $is_deleted = false;
         if($id>0){
             $is_deleted = true;
-            $data = PitchesBookMark::find($id);
+            $data = FavouriteVideo::find($id);
         }else{
-            $data = PitchesBookMark::latest();
+            $data = FavouriteVideo::latest();
         }
 
         if(isset($where_posted_data) && count($where_posted_data)>0){

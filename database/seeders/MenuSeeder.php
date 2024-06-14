@@ -32,7 +32,7 @@ class MenuSeeder extends Seeder
                             'status' => 'Published',
                             'asset_type' => 'Icon',
                             'asset_value' => 'award',
-                            'created_at' => now(),	
+                            'created_at' => now(),
                             'updated_at' => now(),
                         ],
                         [
@@ -43,7 +43,7 @@ class MenuSeeder extends Seeder
                             'status' => 'Published',
                             'asset_type' => 'Icon',
                             'asset_value' => 'lock',
-                            'created_at' => now(),	
+                            'created_at' => now(),
                             'updated_at' => now(),
                         ],
                         [
@@ -54,7 +54,7 @@ class MenuSeeder extends Seeder
                             'status' => 'Published',
                             'asset_type' => 'Icon',
                             'asset_value' => 'unlock',
-                            'created_at' => now(),	
+                            'created_at' => now(),
                             'updated_at' => now(),
                         ],
                         [
@@ -65,7 +65,7 @@ class MenuSeeder extends Seeder
                             'status' => 'Published',
                             'asset_type' => 'Icon',
                             'asset_value' => 'user',
-                            'created_at' => now(),	
+                            'created_at' => now(),
                             'updated_at' => now(),
                         ],
                         [
@@ -76,7 +76,7 @@ class MenuSeeder extends Seeder
                             'status' => 'Published',
                             'asset_type' => 'Icon',
                             'asset_value' => 'menu',
-                            'created_at' => now(),	
+                            'created_at' => now(),
                             'updated_at' => now(),
                         ],
                         [
@@ -87,7 +87,7 @@ class MenuSeeder extends Seeder
                             'status' => 'Published',
                             'asset_type' => 'Icon',
                             'asset_value' => 'menu',
-                            'created_at' => now(),	
+                            'created_at' => now(),
                             'updated_at' => now(),
                         ],
                         // [
@@ -98,7 +98,7 @@ class MenuSeeder extends Seeder
                         //     'status' => 'Published',
                         //     'asset_type' => 'Icon',
                         //     'asset_value' => 'mail',
-                        //     'created_at' => now(),	
+                        //     'created_at' => now(),
                         //     'updated_at' => now(),
                         // ],
                         // [
@@ -109,62 +109,18 @@ class MenuSeeder extends Seeder
                         //     'status' => 'Published',
                         //     'asset_type' => 'Icon',
                         //     'asset_value' => 'code',
-                        //     'created_at' => now(),	
+                        //     'created_at' => now(),
                         //     'updated_at' => now(),
                         // ],
                         [
-                            'title' => 'General Title',
-                            'url' => '/general_title',
-                            'slug' => 'general-title-list',
+                            'title' => 'User upload video',
+                            'url' => '/upload_social_video',
+                            'slug' => 'upload-social-video-list',
                             'sort_order' => 7,
                             'status' => 'Published',
                             'asset_type' => 'Icon',
                             'asset_value' => 'menu',
-                            'created_at' => now(),	
-                            'updated_at' => now(),
-                        ],
-                        [
-                            'title' => 'Goal',
-                            'url' => '/goal',
-                            'slug' => 'goal-list',
-                            'sort_order' => 8,
-                            'status' => 'Published',
-                            'asset_type' => 'Icon',
-                            'asset_value' => 'menu',
-                            'created_at' => now(),	
-                            'updated_at' => now(),
-                        ],
-                        [
-                            'title' => 'Industry Vertical',
-                            'url' => '/industry_vertical_item',
-                            'slug' => 'industry-vertical-item-list',
-                            'sort_order' => 9,
-                            'status' => 'Published',
-                            'asset_type' => 'Icon',
-                            'asset_value' => 'menu',
-                            'created_at' => now(),	
-                            'updated_at' => now(),
-                        ],
-                        [
-                            'title' => 'Professional Role',
-                            'url' => '/professional_role_type',
-                            'slug' => 'professional-role-type-list',
-                            'sort_order' => 10,
-                            'status' => 'Published',
-                            'asset_type' => 'Icon',
-                            'asset_value' => 'menu',
-                            'created_at' => now(),	
-                            'updated_at' => now(),
-                        ],
-                        [
-                            'title' => 'User upload vedio',
-                            'url' => '/upload_social_vedio',
-                            'slug' => 'upload-social-vedio-list',
-                            'sort_order' => 11,
-                            'status' => 'Published',
-                            'asset_type' => 'Icon',
-                            'asset_value' => 'menu',
-                            'created_at' => now(),	
+                            'created_at' => now(),
                             'updated_at' => now(),
                         ],
                     ]);
@@ -174,6 +130,6 @@ class MenuSeeder extends Seeder
             }catch(Exception $e) {
                 echo $e->getMessage();
             }
-            
+
     }
 }

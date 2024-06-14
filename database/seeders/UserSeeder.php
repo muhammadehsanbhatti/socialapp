@@ -85,13 +85,13 @@ class UserSeeder extends Seeder
                         // 'shortcode-edit',
                         // 'shortcode-delete',
                         'edit-profile',
-                        'upload-social-vedio-list',
-                        'upload-social-vedio-create',
-                        'upload-social-vedio-edit',
-                        'upload-social-vedio-delete',
-                       
+                        'upload-social-video-list',
+                        'upload-social-video-create',
+                        'upload-social-video-edit',
+                        'upload-social-video-delete',
+
                     ];
-                    
+
                     foreach ($permissions as $permission) {
                          Permission::create(['name' => $permission, 'guard_name' => 'web']);
                     }
@@ -119,6 +119,6 @@ class UserSeeder extends Seeder
             }catch(Exception $e) {
                 echo $e->getMessage();
             }
-            
+
     }
 }
