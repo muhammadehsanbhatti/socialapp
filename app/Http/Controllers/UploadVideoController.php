@@ -28,10 +28,10 @@ class UploadVideoController extends Controller
         $posted_data = $request->all();
         $posted_data['paginate'] = 10;
 
+        $data['roles'] = \Auth::user()['roles'][0]['id'];
         if (\Auth::user()['roles'][0]['id'] == '3') {
             $posted_data['user_id'] = \Auth::user()->id;
         }
-        // $posted_data['printsql'] = true;
         $data['social_video_record'] = $this->UploadVideoObj->getUploadVideo($posted_data);
 
         $data['html'] = view('upload_video.ajax_records', compact('data'));
@@ -83,7 +83,7 @@ class UploadVideoController extends Controller
                         $posted_data['upload_file'] = 'storage/social_video/' . $file_name;
 
                        $pitch_asset_data =  $this->UploadVideoObj->saveUpdateUploadVideo([
-                            'user_id' => \Auth::user()->id? \Auth::user()->id:NULL,
+                            'user_id' => \Auth::user()->id? \Auth::user()->id : NULL,
                             'title' => $posted_data['title'],
                             'description' => $posted_data['description'],
                             'vedio_status' => 'Pending',
