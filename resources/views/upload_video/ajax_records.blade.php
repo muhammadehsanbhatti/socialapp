@@ -49,6 +49,22 @@
                                         <span>Edit</span>
                                     </a>
                                     @endcan
+                                    
+                                    @if($data['roles'] == 1)
+                                    <form class="video_status">
+                                        @method('post')
+                                        @csrf
+                                        {{-- value="{{ $item->vedio_status == 'Pending'? Approved: NotApprove }} --}}
+                                        <input type="hidden" name="id" value="{{ $item['id'] }}">
+                                        <input type="hidden" name="vedio_status" value="{{ $item->vedio_status == 'Pending' ? 'Approved' : 'NotApprove' }}">
+                                        <button type="button" name="vedio_status" class="dropdown-item" id="video_status" style="width:100%">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check mr-50"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                            <span>{{ $item->vedio_status == 'Pending'? 'Approve': 'Not Approve' }}</span>
+
+                                        </button>
+                                    </form>
+                                    @endif
 
                                     @can('upload-social-video-delete')
                                     <form action="{{ url('upload_social_video/'.$item['id']) }}" method="post">
@@ -65,19 +81,9 @@
                                         </button>
                                     </form>
                                     @endcan
+                                    
 
-                                    @if($data['roles'] == 1)
-                                    <form action="{{ url('upload_social_video/'.$item['id']) }}" method="post">
-                                        @method('post')
-                                        @csrf
-                                        <button type="submit" class="dropdown-item" id="delButton" style="width:100%">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check mr-50"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                            <span>{{ $item->vedio_status == 'Pending'? 'Approve': 'Not Approve' }}</span>
-
-                                        </button>
-                                    </form>
-                                    @endif
+                                   
                                 </div>
                             {{-- @endif --}}
                         </div>
@@ -102,3 +108,53 @@
     </div>
 
 </div>
+@section('upload_video_script')
+    
+<script>
+    $(document).ready(function(){
+         $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).on('click', '#video_status', function(event){
+        event.preventDefault();
+        var button = $(this);
+        var form = button.closest('form');
+        var id = form.find('input[name="id"]').val();
+        var vedio_status = form.find('input[name="vedio_status"]').val();
+
+        $.ajax({
+            url: "{{ url('upload_social_video_verify') }}/" + id,
+            type: 'POST',
+            data: {
+                
+                id: id,
+                vedio_status: vedio_status
+            },
+           
+            // context: this,
+            dataType: 'json',
+            success: function(data) {
+                console.log("data");
+                console.log(data);
+                swal({
+                    title: `Video status updated successfully`,
+                    icon: "success",
+                    buttons:"OK",
+                    dangerMode: false,
+                })
+                .then(function(){ 
+                    location.reload();
+                    // button.find('span').text(data.new_status);
+                    // form.find('input[name="vedio_status"]').val(data.new_status == 'Approve' ? 'Approved' : 'NotApprove');
+                });
+            },
+            error: function(xhr) {
+                alert('An error occurred.');
+            }
+        });
+    });
+});
+</script>
+@endsection

@@ -148,6 +148,8 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('contact-us-list', [ContactController::class, 'contactUsList']);
     Route::post('export', [UserController::class, 'export_data'])->name('export_data_to_file');
 
+    Route::post('upload_social_video_verify/{id}', [UploadVideoController::class, 'verify_social_videl'])->name('verify_video');
+
 
 
     //resouce routes

@@ -333,6 +333,9 @@
         </div>
     </div>
 
+
+  
+
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
@@ -443,8 +446,11 @@
     @endif
 
 
+
+
    
     @yield('scripts')
+    @yield('upload_video_script')
     @yield('notificationScript')
 
 </body>

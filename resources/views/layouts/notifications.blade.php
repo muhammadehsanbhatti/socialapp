@@ -51,7 +51,7 @@
 @section('notificationScript')
 
 <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script> 
-
+{{-- 
  
 <script>
 var notificationPage =1; 
@@ -251,5 +251,5 @@ function loadNotification(page, loader = false, readAllLoader = false) {
         event.notification.close();
     });
     
-</script>
+</script> --}}
 @endsection
