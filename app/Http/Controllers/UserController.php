@@ -120,6 +120,40 @@ class UserController extends Controller
         $data['counts']['short_codes'] = $this->EmailShortCodeObj->getEmailShortCode([
             'count' => true
         ]);
+        
+
+        $data['counts']['approve_social_video_super_admin'] = $this->UploadVideoObj->getUploadVideo([
+            'count' => true,
+            'vedio_status' => 'Approved',
+        ]);
+
+        $data['counts']['approve_social_video_user'] = $this->UploadVideoObj->getUploadVideo([
+            'count' => true,
+            'vedio_status' => 'Approved',
+            'user_id' => \Auth::user()->id,
+        ]);
+
+        $data['counts']['pending_social_video_super_admin'] = $this->UploadVideoObj->getUploadVideo([
+            'count' => true,
+            'vedio_status' => 'Pending',
+        ]);
+
+        $data['counts']['pending_social_video_user'] = $this->UploadVideoObj->getUploadVideo([
+            'count' => true,
+            'vedio_status' => 'Pending',
+            'user_id' => \Auth::user()->id,
+        ]);
+
+        $data['counts']['not_approve_social_video_super_admin'] = $this->UploadVideoObj->getUploadVideo([
+            'count' => true,
+            'vedio_status' => 'NotApprove',
+        ]);
+
+        $data['counts']['not_approve_social_video_user'] = $this->UploadVideoObj->getUploadVideo([
+            'count' => true,
+            'vedio_status' => 'NotApprove',
+            'user_id' => \Auth::user()->id,
+        ]);
 
 
 

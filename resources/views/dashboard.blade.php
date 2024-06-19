@@ -72,7 +72,7 @@
                     @endif
 
 
-                    @can('permission-list')
+                    {{-- @can('permission-list')
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header flex-column align-items-start pb-0">
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endcan
+                    @endcan --}}
 
 
                     @can('user-list')
@@ -110,7 +110,7 @@
                     @endcan
 
 
-                    @can('menu-list')
+                    {{-- @can('menu-list')
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header flex-column align-items-start pb-0">
@@ -126,9 +126,9 @@
                                 </div>
                             </div>
                         </div>
-                    @endcan
+                    @endcan --}}
 
-                    @can('sub-menu-list')
+                    {{-- @can('sub-menu-list')
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header flex-column align-items-start pb-0">
@@ -141,6 +141,71 @@
                                     </div>
                                     <h2 class="font-weight-bolder mt-1">{{ isset($data['counts']['sub_menus'])? $data['counts']['sub_menus']:0 }}</h2>
                                     <p class="card-text mb-1">Sub Menu</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endcan --}}
+
+                    @can('upload-social-video-list')
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-header flex-column align-items-start pb-0">
+                                    <div class="avatar bg-light-primary p-50 m-0">
+                                        <a href="javascript:void()" style="color: #7367F0 !important;">
+                                            <div class="avatar-content">
+                                                <i data-feather="menu" class="font-medium-5"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    @if (\Auth::user()->id == 1)
+                                        <h2 class="font-weight-bolder mt-1">{{ isset($data['counts']['approve_social_video_super_admin']) ? $data['counts']['approve_social_video_super_admin']:0 }}</h2>
+                                        @else
+                                        <h2 class="font-weight-bolder mt-1">{{  isset($data['counts']['approve_social_video_user']) ? $data['counts']['approve_social_video_user']:0 }}</h2>
+
+                                    @endif
+                                    <p class="card-text mb-1">Approved Video</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-header flex-column align-items-start pb-0">
+                                    <div class="avatar bg-light-primary p-50 m-0">
+                                        <a href="javascript:void()" style="color: #7367F0 !important;">
+                                            <div class="avatar-content">
+                                                <i data-feather="menu" class="font-medium-5"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    @if (\Auth::user()->id == 1)
+                                        <h2 class="font-weight-bolder mt-1">{{ isset($data['counts']['pending_social_video_super_admin']) ? $data['counts']['pending_social_video_super_admin']:0 }}</h2>
+                                        @else
+                                        <h2 class="font-weight-bolder mt-1">{{  isset($data['counts']['pending_social_video_user']) ? $data['counts']['pending_social_video_user']:0 }}</h2>
+
+                                    @endif
+                                    <p class="card-text mb-1">Pending Video</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-header flex-column align-items-start pb-0">
+                                    <div class="avatar bg-light-primary p-50 m-0">
+                                        <a href="javascript:void()" style="color: #7367F0 !important;">
+                                            <div class="avatar-content">
+                                                <i data-feather="menu" class="font-medium-5"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    @if (\Auth::user()->id == 1)
+                                        <h2 class="font-weight-bolder mt-1">{{ isset($data['counts']['not_approve_social_video_super_admin']) ? $data['counts']['not_approve_social_video_super_admin']:0 }}</h2>
+                                        @else
+                                        <h2 class="font-weight-bolder mt-1">{{  isset($data['counts']['not_approve_social_video_user']) ? $data['counts']['not_approve_social_video_user']:0 }}</h2>
+
+                                    @endif
+                                    <p class="card-text mb-1">Not Approve Video</p>
                                 </div>
                             </div>
                         </div>

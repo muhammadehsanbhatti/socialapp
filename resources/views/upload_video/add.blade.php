@@ -56,9 +56,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text basic-addon">
                                                     <div class="display_images preview_upload_file">
-                                                        {{-- @if (isset($data->upload_file) && !empty($data->upload_file))
+                                                        @if (isset($data->upload_file) && !empty($data->upload_file))
                                                             <a data-fancybox="demo" data-src="{{ is_image_exist($data->upload_file) }}"><img title="{{ $data->name }}" src="{{ is_image_exist($data->upload_file) }}" height="100"></a>
-                                                        @endif --}}
+                                                        @endif
                                                     </div>
                                                 </span>
                                                 </div>

@@ -57,7 +57,7 @@ class UploadVideoController extends Controller
                 'vedio_status' => $request->vedio_status,
             ]);
             $response['status'] = true;
-            $response['new_status'] = ($uploaded_video_detail->vedio_status == 'Pending') ? 'Approve' : 'Not Approve';
+            $response['new_status'] = $uploaded_video_detail->vedio_status;
             $response['message'] = 'Video status updated successfully';
         }
 
@@ -152,7 +152,12 @@ class UploadVideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $posted_data = array();
+        $posted_data['id'] = $id;
+        $posted_data['detail'] = true;
+
+        $data  = $this->UploadVideoObj->getUploadVideo($posted_data);
+        return view('upload_video.add',compact('data'));
     }
 
     /**

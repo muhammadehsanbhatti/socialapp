@@ -56,11 +56,26 @@
                                         @csrf
                                         {{-- value="{{ $item->vedio_status == 'Pending'? Approved: NotApprove }} --}}
                                         <input type="hidden" name="id" value="{{ $item['id'] }}">
-                                        <input type="hidden" name="vedio_status" value="{{ $item->vedio_status == 'Pending' ? 'Approved' : 'NotApprove' }}">
+                                        @php
+                                        if ($item->vedio_status == 'Pending') {
+                                            $video_status =  'Approved';
+                                            $video_status_value =  'Approve';
+                                        }
+                                        elseif ($item->vedio_status == 'Approved') {
+                                            $video_status =  'NotApprove';
+                                            $video_status_value =  'Not Approve';
+                                        }
+                                        elseif ($item->vedio_status == 'NotApprove') {
+                                            $video_status =  'Pending';
+                                            $video_status_value =  'Pending';
+                                        }
+                                        
+                                        @endphp
+                                        <input type="hidden" name="vedio_status" value="{{ $video_status }}">
                                         <button type="button" name="vedio_status" class="dropdown-item" id="video_status" style="width:100%">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check mr-50"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                            <span>{{ $item->vedio_status == 'Pending'? 'Approve': 'Not Approve' }}</span>
+                                            <span>{{ $video_status_value }}</span>
 
                                         </button>
                                     </form>
@@ -128,7 +143,6 @@
             url: "{{ url('upload_social_video_verify') }}/" + id,
             type: 'POST',
             data: {
-                
                 id: id,
                 vedio_status: vedio_status
             },
