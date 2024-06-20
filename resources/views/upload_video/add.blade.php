@@ -49,19 +49,29 @@
                                             @enderror
                                         </div>
                                     </div>
-
-                                    <div class="col-md-12 col-12">
-                                        <label for="upload_file">Social Vedio</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text basic-addon">
-                                                    <div class="display_images preview_upload_file">
-                                                        @if (isset($data->upload_file) && !empty($data->upload_file))
-                                                            <a data-fancybox="demo" data-src="{{ is_image_exist($data->upload_file) }}"><img title="{{ $data->name }}" src="{{ is_image_exist($data->upload_file) }}" height="100"></a>
-                                                        @endif
-                                                    </div>
-                                                </span>
+                                    @if (isset($data->path) && !empty($data->path))
+                                        <div class="col-md-6 col-12">
+                                            <label for="upload_file">Social Video</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text basic-addon">
+                                                        <div class="display_images preview_upload_file">
+                                                            <a data-fancybox href="{{ asset($data->path) }}" data-caption="{{ $data->name }}">
+                                                                <video width="100" height="100" style="height:170px; width:761px" controls>
+                                                                    <source src="{{ asset($data->path) }}" type="video/mp4">
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            </a>
+                                                        </div>
+                                                    </span>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    <div class="col-12 {{  isset($data->path) ? 'col-md-6' :'col-md-12' }} ">
+                                        <label for="upload_file">Social Video</label>
+                                        <div class="input-group">
                                             <input type="file" id="upload_file" data-img-val="preview_upload_file" class="form-control @error('upload_file') is-invalid @enderror" placeholder="Upload video" name="upload_file">
                                             @error('upload_file')
                                                 <span class="invalid-feedback" role="alert">
@@ -71,11 +81,13 @@
                                         </div>
                                     </div>
 
+
+
                                     <div class="col-md-12 col-12 mt-2">
                                         <div class="form-group">
                                             <label for="description">Descripe about video</label>
                                             <textarea data-length="120" name="description" class="form-control char-textarea" id="textarea-counter"
-                                                rows="5" placeholder="Description ">Descripe some words on uploaded video.
+                                                rows="5" placeholder="Description">{!! @$data->description !!}
                                             </textarea>
                                             <small class="counter-value float-right"><span class="char-count">108</span> / 120
                                             </small>
@@ -101,3 +113,13 @@
     </div>
 </div>
 @endsection
+
+<script>
+    $(document).ready(function() {
+        $('[data-fancybox]').fancybox({
+            video: {
+                autoStart: true,
+            },
+        });
+    });
+    </script>

@@ -36,6 +36,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/tables/datatable/responsive.bootstrap.min.css') }}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
     {{-- Full Calander --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/fullCalander.min.css') }}">
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/bootstrap.min.css') }}"> --}}
@@ -116,7 +118,7 @@
                         <i class="ficon" data-feather="{{  isset(Auth::user()->theme_mode) && Auth::user()->theme_mode  == 'Light' ? 'moon':'sun' }}"></i>
                     </a>
                 </li>
-              
+
                 {{-- @include('layouts.notifications') --}}
 
                 <li class="nav-item dropdown dropdown-user">
@@ -209,7 +211,7 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
                 <li class="{{ Request::path() == 'dashboard' ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ url('dashboard') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a>
-            
+
 
                 <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
                 </li>
@@ -223,25 +225,25 @@
                     ]);
                     $request_url = Request::path();
                 @endphp
-                
+
                 @foreach ($data_arr as $key => $data_obj)
                     @php
                         $main_menu = $data_obj->where('slug', $data_obj->slug)->pluck('slug','slug');
                         $childs_menu = $data_obj->sub_menus->pluck('slug','slug');
                         $childs_count = $data_obj->sub_menus->count();
                         // $class = ($request_url == $data_obj->url) ? 'active' : '';
-                        // $slug =  str_replace_first('/', '', $data_obj->url); 
-                        $slug =  $data_obj->url; 
-                        $str_slug =  '/'.Request::path(); 
+                        // $slug =  str_replace_first('/', '', $data_obj->url);
+                        $slug =  $data_obj->url;
+                        $str_slug =  '/'.Request::path();
                         $class = (strpos($str_slug, $slug) !== false) ? 'active' : '';
                         // $class = (Request::path() == $slug ||) ? 'active' : '';
 
                         $main_menu = $main_menu->ToArray();
                         $childs_menu = $childs_menu->ToArray();
-                        $all_menu = array_merge($main_menu, $childs_menu); 
-                        // $all_menu = $childs_menu; 
+                        $all_menu = array_merge($main_menu, $childs_menu);
+                        // $all_menu = $childs_menu;
                     @endphp
-                    
+
                     @canany($all_menu)
                         <li class="{{ $class }} nav-item">
                             <a class="d-flex align-items-center" href="{{ url($data_obj->url) }}">
@@ -256,7 +258,7 @@
                             </a>
 
                             @if ($childs_count > 0 )
-                                <ul class="menu-content">                    
+                                <ul class="menu-content">
                                     @foreach ($data_obj->sub_menus as $key => $sub_menu_obj)
                                         @if ($sub_menu_obj->status == 'Published')
                                             @can($sub_menu_obj->slug)
@@ -275,7 +277,7 @@
                                         @endif
                                     @endforeach
                                 </ul>
-                            @endif  
+                            @endif
                         </li>
                     @endcan
                 @endforeach
@@ -334,7 +336,7 @@
     </div>
 
 
-  
+
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
@@ -392,6 +394,8 @@
     <script src="{{ asset('app-assets/js/scripts/sweetalert/sweetalert.min.js') }}"></script>
     <!-- END: Page JS-->
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
     @if (preg_match('/\bemail_template\b/', Request::path() ))
@@ -448,7 +452,7 @@
 
 
 
-   
+
     @yield('scripts')
     @yield('upload_video_script')
     @yield('notificationScript')

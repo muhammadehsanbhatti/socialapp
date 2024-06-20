@@ -50,7 +50,7 @@ class UploadVideoController extends Controller
             'id' => $id,
             'detail' => true
         ]);
-        
+
         if ($uploaded_video_detail) {
             $this->UploadVideoObj->saveUpdateUploadVideo([
                 'update_id' => $id,
