@@ -18,17 +18,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         .swiper-slide video {
             width: 100%;
             height: auto;
-            max-height: 90vh;
+            max-height: 82vh;
         }
-        .btn-container {
+        .btn-container, .video-buttons {
             position: absolute;
             top: 20px;
             right: 20px;
             z-index: 10;
+        }
+        .video-buttons {
+            bottom: 20px;
+            top: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
         }
     </style>
 </head>
@@ -39,13 +48,20 @@
                 Login
             </button>
         </div>
+
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @foreach($data as $key => $video_detail)
                 <div class="swiper-slide">
-                    <video>
+                    <video controls>
                         <source src="{{ asset($video_detail->path) }}" type="video/mp4">
                     </video>
+                    <div class="video-buttons">
+                        <a href="{{ asset($video_detail->path) }}" download class="btn btn-secondary">Download</a>
+                        <button onclick="shareOnWhatsApp('{{ asset($video_detail->path) }}')" class="btn btn-success">WhatsApp</button>
+                        <button onclick="shareOnFacebook('{{ asset($video_detail->path) }}')" class="btn btn-primary">Facebook</button>
+                        <button onclick="shareOnInstagram('{{ asset($video_detail->path) }}')" class="btn btn-danger">Instagram</button>
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -82,6 +98,21 @@
                 }
             }
         });
+
+        function shareOnWhatsApp(videoUrl) {
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(videoUrl)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function shareOnFacebook(videoUrl) {
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(videoUrl)}`;
+            window.open(facebookUrl, '_blank');
+        }
+
+        function shareOnInstagram(videoUrl) {
+            const instagramUrl = `https://www.instagram.com/?url=${encodeURIComponent(videoUrl)}`;
+            window.open(instagramUrl, '_blank');
+        }
     </script>
 </body>
 </html>

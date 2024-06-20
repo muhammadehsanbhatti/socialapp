@@ -170,7 +170,7 @@ class User extends Authenticatable
     public static function getUser($posted_data = array())
     {
         $query = User::latest()
-                        ->with('userSetting')
+                        // ->with('userSetting')
         ;
         // if (isset($posted_data['general_title_response'])) {
         //     $query->with(['userProfRoleTypeItems']);

@@ -514,10 +514,6 @@ class UserController extends Controller
             'confirm_password' => 'required|required_with:password|same:password',
         );
 
-        $messages = array(
-            'phone_number.min' => 'The :attribute format is not correct (123-456-7890).'
-        );
-
         $validator = \Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {

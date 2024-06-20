@@ -26,6 +26,9 @@
             <a href="{{ route('forgotPassword') }}">
                 <small>Forgot Password?</small>
             </a>
+            <a href="{{ route('register') }}">
+                <small>Register</small>
+            </a>
         </div>
         <div class="input-group input-group-merge form-password-toggle">
             <input required type="password" class="form-control @error('password') is-invalid @enderror form-control-merge" id="password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />

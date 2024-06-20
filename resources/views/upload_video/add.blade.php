@@ -52,12 +52,12 @@
                                     @if (isset($data->path) && !empty($data->path))
                                         <div class="col-md-6 col-12">
                                             <label for="upload_file">Social Video</label>
-                                            <div class="input-group">
+                                            <div class="">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text basic-addon">
                                                         <div class="display_images preview_upload_file">
                                                             <a data-fancybox href="{{ asset($data->path) }}" data-caption="{{ $data->name }}">
-                                                                <video width="100" height="100" style="height:170px; width:761px" controls>
+                                                                <video width="100" height="100" controls>
                                                                     <source src="{{ asset($data->path) }}" type="video/mp4">
                                                                     Your browser does not support the video tag.
                                                                 </video>
