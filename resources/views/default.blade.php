@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -42,13 +43,12 @@
             <div class="swiper-wrapper">
                 @foreach($data as $key => $video_detail)
                 <div class="swiper-slide">
-                    <video controls>
+                    <video>
                         <source src="{{ asset($video_detail->path) }}" type="video/mp4">
                     </video>
                 </div>
                 @endforeach
             </div>
-            <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
         </div>
     </div>
@@ -64,22 +64,23 @@
                     clickable: true,
                 },
                 on: {
-                    slideChange: function () {
-                        const videos = document.querySelectorAll('.swiper-slide video');
-                        videos.forEach(video => video.pause());
-                        const activeSlide = document.querySelector('.swiper-slide-active video');
-                        if (activeSlide) {
-                            activeSlide.play();
-                        }
-                    },
                     init: function () {
-                        const firstVideo = document.querySelector('.swiper-slide-active video');
-                        if (firstVideo) {
-                            firstVideo.play();
-                        }
+                        playActiveSlideVideo();
+                    },
+                    slideChange: function () {
+                        playActiveSlideVideo();
                     },
                 },
             });
+
+            function playActiveSlideVideo() {
+                const videos = document.querySelectorAll('.swiper-slide video');
+                videos.forEach(video => video.pause());
+                const activeSlide = document.querySelector('.swiper-slide-active video');
+                if (activeSlide) {
+                    activeSlide.play();
+                }
+            }
         });
     </script>
 </body>

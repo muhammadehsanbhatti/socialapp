@@ -49,7 +49,6 @@ class UserController extends Controller
     {
         $data  = $this->UploadVideoObj->getUploadVideo([
             'vedio_status' => 'Approved',
-            'paginate' => 1
         ]);
         return view('default',compact('data'));
         // return view('welcome');
