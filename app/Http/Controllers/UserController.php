@@ -47,7 +47,12 @@ class UserController extends Controller
 
     public function welcome()
     {
-        return view('welcome');
+        $data  = $this->UploadVideoObj->getUploadVideo([
+            'vedio_status' => 'Approved',
+            'paginate' => 1
+        ]);
+        return view('default',compact('data'));
+        // return view('welcome');
     }
 
     public function login()
@@ -120,7 +125,7 @@ class UserController extends Controller
         $data['counts']['short_codes'] = $this->EmailShortCodeObj->getEmailShortCode([
             'count' => true
         ]);
-        
+
 
         $data['counts']['approve_social_video_super_admin'] = $this->UploadVideoObj->getUploadVideo([
             'count' => true,

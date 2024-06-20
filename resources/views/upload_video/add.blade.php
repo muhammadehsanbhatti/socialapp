@@ -87,7 +87,7 @@
                                         <div class="form-group">
                                             <label for="description">Descripe about video</label>
                                             <textarea data-length="120" name="description" class="form-control char-textarea" id="textarea-counter"
-                                                rows="5" placeholder="Description">{!! @$data->description !!}
+                                                rows="5" placeholder="Description" value="{{old('description', isset($data->description)? $data->description: '')}}">{!! @$data->description !!}
                                             </textarea>
                                             <small class="counter-value float-right"><span class="char-count">108</span> / 120
                                             </small>

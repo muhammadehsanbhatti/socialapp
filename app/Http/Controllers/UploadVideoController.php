@@ -173,7 +173,7 @@ class UploadVideoController extends Controller
         $posted_data['update_id'] = $id;
         $rules = array(
             'title' => 'required',
-            'upload_file' => 'file|required',
+            'upload_file' => 'file',
         );
         $validator = \Validator::make($posted_data, $rules);
 
@@ -184,14 +184,26 @@ class UploadVideoController extends Controller
 
             try{
                 if ($request->file('upload_file')) {
+                    $base_url = public_path();
                     $extension = $request->file('upload_file')->getClientOriginalExtension();
                     if ($extension == 'mp4') {
+
+                        $auth_user_detail  = $this->UploadVideoObj->getUploadVideo($posted_data);
+
+                        if (!empty($auth_user_detail[0]->path)) {
+                            $oldVideoPath = $base_url.'/'.$auth_user_detail[0]->path;
+                            if (file_exists($oldVideoPath)) {
+                                unlink($oldVideoPath);
+                            }
+                        }
+
                         $file_name = $request->file('upload_file')->getClientOriginalName() . '_' . time() . '_'  . rand(1000000, 9999999) . '.' . $extension;
                         $fileSize = $request->file('upload_file')->getSize();
                         $filePath = $request->file('upload_file')->storeAs('social_video', $file_name, 'public');
                         $posted_data['upload_file'] = 'storage/social_video/' . $file_name;
 
                        $pitch_asset_data =  $this->UploadVideoObj->saveUpdateUploadVideo([
+                            'update_id' => $id,
                             'user_id' => \Auth::user()->id? \Auth::user()->id : NULL,
                             'title' => $posted_data['title'],
                             'description' => $posted_data['description'],
@@ -208,14 +220,12 @@ class UploadVideoController extends Controller
                         return $this->sendError($error_message['error'], $error_message);
                     }
 
-                \Session::flash('message', 'You uploaded social video Successfully!');
+                \Session::flash('message', 'You uploaded social video updated Successfully!');
                 }
 
             } catch (Exception $e) {
                 \Session::flash('error_message', $e->getMessage());
-                // dd("Error: ". $e->getMessage());
             }
-            // return redirect()->back()->withInput();
             return redirect('/upload_social_video');
         }
     }
