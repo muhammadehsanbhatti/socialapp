@@ -57,6 +57,7 @@ class UserSeeder extends Seeder
                         'user-list',
                         'user-create',
                         'user-edit',
+                        'user-change-password',
                         'user-delete',
                         'user-status',
                         'role-list',
@@ -110,7 +111,7 @@ class UserSeeder extends Seeder
 
                     $role = Role::where('name','User')->first();
                     $user = User::where('id', 3)->first();
-                    $permissions = Permission::whereIn('id',[24,25,26,27,31])->pluck('id','id')->all();
+                    $permissions = Permission::whereIn('id',[4,25,26,27,28,31])->pluck('id','id')->all();
                     $role->syncPermissions($permissions);
                     $user->assignRole([$role->id]);
 

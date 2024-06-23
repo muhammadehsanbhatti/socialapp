@@ -13,10 +13,11 @@ class UserController extends Controller
     function __construct()
     {
         parent::__construct();
-        $this->middleware('permission:user-list|user-edit|user-delete|user-status', ['only' => ['index']]);
+        $this->middleware('permission:user-list|user-edit|user-change-password|user-delete|user-status', ['only' => ['index']]);
         $this->middleware('permission:user-create', ['only' => ['create','store']]);
         $this->middleware('permission:user-edit|user-status|edit-profile', ['only' => ['edit','update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-change-password', ['only' => ['accountResetPassword']]);
     }
 
     public function testing() {
@@ -537,47 +538,123 @@ class UserController extends Controller
 
     public function accountResetPassword(Request $request)
     {
-        $request_data = $request->all();
-        // if(!isset($request_data['g-recaptcha-response']) || empty($request_data['g-recaptcha-response'])){
-        //     return back()->withErrors([
-        //         'email' => 'Please check recaptcha and try again.',
-        //     ]);
-        // }
+        echo '<pre>';print_r($request->all()); echo'</pre>';exit;
+        {
+            $params = $request->all();
+            
+           
+            $rules = array(
+                'email'             => 'required|email:rfc,dns|email',
+                'old_password'      => 'required',
+                // 'new_password'      => 'required|min:4',
+                'new_password'      => [
+                    'required', Password::min(8)
+                        ->letters()
+                        ->mixedCase()
+                        ->numbers()
+                        ->symbols()
+                        ->uncompromised()
+                ],
+                'confirm_password'  => 'required|required_with:new_password|same:new_password'
+            );
+            $validator = \Validator::make($request->all(), $rules);
+    
+            if ($validator->fails()) {
+                return $this->sendError($validator->errors()->first(), ["error" => $validator->errors()->first()]);
+            }
+            echo '<pre>sdfsdfsdf';print_r($response); echo'</pre>';exit;
+            $response = $this->authorizeUser([
+                'email' => $params['email'],
+                'password' => $params['old_password'],
+                'mode' => 'only_validate',
+            ]);
+            
+    
+            if ($params['old_password'] == $params['new_password']) {
+                $error_message['error'] = 'New and old password must be different.';
+                return $this->sendError($error_message['error'], $error_message);
+            }
+    
+            if (!$response) {
+                $error_message['error'] = 'Your old password is incorrect.';
+                return $this->sendError($error_message['error'], $error_message);
+            } else {
+                $new_password = $params['confirm_password'];
+                $email = $request->get('email');
+                $password = Hash::make($new_password);
+    
+                echo '<pre>';print_r($password); echo'</pre>';exit;
+                \DB::update('update users set password = ? where email = ?', [$password, $email]);
+    
+                // $data = [
+                //     'new_password' => $new_password,
+                //     'subject' => 'Reset Password',
+                //     'email' => $email
+                // ];
+    
+                $admin['id'] = 1;
+                $admin['detail'] = true;
+                $admin_data = $this->UserObj->getUser($admin);
+    
+                $user_data = User::where('email', '=', $request->get('email'))->first();
+                if ($admin_data) {
+    
+                    // this email will sent to the user who have requested to forget password
+                    $email_content = EmailTemplate::getEmailMessage(['id' => 2, 'detail' => true]);
+    
+                    $email_data = decodeShortCodesTemplate([
+                        'subject' => $email_content->subject,
+                        'body' => $email_content->body,
+                        'email_message_id' => 2,
+                        'user_id' => $user_data->id,
+                    ]);
+                   
+    
+                    EmailLogs::saveUpdateEmailLogs([
+                        'email_msg_id' => 8,
+                        'sender_id' => $admin_data->id,
+                        'receiver_id' => $user_data->id,
+                        'email' => $user_data->email,
+                        'subject' => $email_data['email_subject'],
+                        'email_message' => $email_data['email_body'],
+                        'send_email_after' => 1, // 1 = Daily Email
+                    ]);
+                }
+    
+    
+                // Mail::send('emails.reset_password', $data, function($message) use ($data) {
+                //     $message->to($data['email'])
+                //     ->subject($data['subject']);
+                // });
+    
+                return $this->sendResponse([], 'Your password has been updated.');
+            }
+        }
 
-        $validator = \Validator::make($request->all(), [
-            'email' => 'required|email|exists:users,email',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        } else {
-            $random_hash = substr(md5(uniqid(rand(), true)), 10, 10);
-            $email = $request_data['email'];
-            $password = \Hash::make($random_hash);
-
-            // $userObj = new user();
-            // $posted_data['email'] = $email;
-            // $posted_data['password'] = $password;
-            // $userObj->updateUser($posted_data);
-
-            \DB::update('update users set password = ? where email = ?',[$password,$email]);
-
-            $data = [
-                'new_password' => $random_hash,
-                'subject' => 'Reset Password',
-                'email' => $email
-            ];
-
-            \Mail::send('emails.reset_password', $data, function($message) use ($data) {
-                $message->to($data['email'])
-                ->subject($data['subject']);
-            });
             \Session::flash('message', 'Your password has been changed successfully please check you email!');
             return redirect('/sp-login');
 
-        }
     }
 
+    public function authorizeUser($posted_data)
+    {
+        $email = isset($posted_data['email']) ? $posted_data['email'] : '';
+        $password = isset($posted_data['password']) ? $posted_data['password'] : '';
+
+        if (\Auth::attempt(['email' => $email, 'password' => $password])) {
+            $user = \Auth::user();
+            $response =  $user;
+
+            if (isset($posted_data['mode']) && $posted_data['mode'] == 'only_validate') {
+                return $response;
+            }
+
+            $response['token'] =  $user->createToken('MyApp')->accessToken;
+            return $response;
+        } else {
+            return false;
+        }
+    }
 
     public function sendNotification() {
 
@@ -594,7 +671,6 @@ class UserController extends Controller
                 'icon'  => "https://image.flaticon.com/icons/png/512/270/270014.png",/*Default Icon*/
                 'sound' => 'Default'/*Default sound*/
             );
-
         $fields = array
                 (
                     'to'        => $token,

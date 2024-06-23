@@ -150,6 +150,16 @@
                                 <span>Edit</span>
                             </a>
                         @endcan
+                        
+
+                        @can('user-change-password')
+                            <a class="dropdown-item" href="{{ url('reset-password')}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                                <span>Change Pass</span>
+                            </a>
+                        @endcan
                         <a class="dropdown-item" href="{{ url('logout') }}"><i class="mr-50" data-feather="power"></i> Logout</a>
 
                     </div>
@@ -343,7 +353,6 @@
     <!-- BEGIN Vendor JS-->
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
 
     <script src="{{ asset('app-assets/vendors/js/forms/wizard/bs-stepper.min.js')}}"></script>
@@ -394,8 +403,6 @@
     <script src="{{ asset('app-assets/js/scripts/sweetalert/sweetalert.min.js') }}"></script>
     <!-- END: Page JS-->
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
     @if (preg_match('/\bemail_template\b/', Request::path() ))

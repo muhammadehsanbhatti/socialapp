@@ -11,10 +11,10 @@
 <form class="auth-reset-password-form mt-2" action="{{ route('accountResetPassword') }}" method="POST">
     <div class="form-group">
         <div class="d-flex justify-content-between">
-            <label for="reset-password-new">New Password</label>
+            <label for="old_password">Old Password</label>
         </div>
         <div class="input-group input-group-merge form-password-toggle">
-            <input type="password" class="form-control form-control-merge" id="reset-password-new" name="reset-password-new" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="reset-password-new" tabindex="1" autofocus />
+            <input type="password" class="form-control form-control-merge" id="old_password" name="old_password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="old_password" tabindex="1" autofocus />
             <div class="input-group-append">
                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
             </div>
@@ -22,10 +22,21 @@
     </div>
     <div class="form-group">
         <div class="d-flex justify-content-between">
-            <label for="reset-password-confirm">Confirm Password</label>
+            <label for="new_password">New Password</label>
         </div>
         <div class="input-group input-group-merge form-password-toggle">
-            <input type="password" class="form-control form-control-merge" id="reset-password-confirm" name="reset-password-confirm" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="reset-password-confirm" tabindex="2" />
+            <input type="password" class="form-control form-control-merge" id="new_password" name="new_password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="new_password" tabindex="1" autofocus />
+            <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="d-flex justify-content-between">
+            <label for="confirm_password">Confirm Password</label>
+        </div>
+        <div class="input-group input-group-merge form-password-toggle">
+            <input type="password" class="form-control form-control-merge" id="confirm_password" name="confirm_password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="confirm_password" tabindex="2" />
             <div class="input-group-append">
                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
             </div>
