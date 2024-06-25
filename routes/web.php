@@ -118,24 +118,24 @@ Route::get('/send_socket', function () {
 Route::get('/test', [UserController::class, 'testing']);
 Route::get('/', [UserController::class, 'welcome']);
 // Route::get('/', [UserController::class, 'welcome']);
-Route::get('/sp-login', [UserController::class, 'login'])->name('sp-login');
 Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/send_notification', [UserController::class, 'sendNotification']);
-// ->name('logout');
 
 Route::get('/register', [UserController::class, 'register'])->name('register');
-Route::get('/forgot-password', [UserController::class, 'forgotPassword'])->name('forgotPassword');
-Route::get('/reset-password', [UserController::class, 'resetPassword'])->name('resetPassword');
-
 Route::post('/accountRegister', [UserController::class, 'accountRegister'])->name('accountRegister');
+Route::get('/sp-login', [UserController::class, 'login'])->name('sp-login');
 Route::post('/accountLogin', [UserController::class, 'accountLogin'])->name('accountLogin');
-Route::post('/resetPassword', [UserController::class, 'accountResetPassword'])->name('accountResetPassword');
+
+Route::get('/forgot-password', [UserController::class, 'forgotPassword'])->name('forgotPassword');
+Route::post('forgot_password', [UserController::class, 'forgot_password'])->name('forgot_password');
 
 // Route::get('contact-us', [ContactController::class, 'index']);
 // Route::post('contact-us', [ContactController::class, 'store'])->name('contact.us.store');
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/change_pass', [UserController::class, 'change_pass']);
+    Route::post('change_password', [UserController::class, 'changePassword'])->name('changePassword');
     Route::get('/app-chat', [UserController::class, 'appChat']);
 
     Route::post('/blockUnblockUser', [UserController::class, 'blockUnblockUser']);

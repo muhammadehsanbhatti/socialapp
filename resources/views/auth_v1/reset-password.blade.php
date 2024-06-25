@@ -1,4 +1,4 @@
-@section('title', 'Register')
+@section('title', 'Change Password')
 @extends('layouts.login_app')
 
 @section('content')
@@ -7,8 +7,16 @@
 
 <h4 class="card-title mb-1">Reset Password 🔒</h4>
 <p class="card-text mb-2">Your new password must be different from previously used passwords</p>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </div>
+@endif
 
-<form class="auth-reset-password-form mt-2" action="{{ route('accountResetPassword') }}" method="POST">
+<form class="auth-reset-password-form mt-2" action="{{ route('changePassword') }}" method="POST">
+    @csrf
     <div class="form-group">
         <div class="d-flex justify-content-between">
             <label for="old_password">Old Password</label>

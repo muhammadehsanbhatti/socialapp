@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Laravel\Passport\Token;
+use Illuminate\Support\Facades\Hash;
 use App\Exports\ExportData;
 use Illuminate\Support\Arr;
 use App\Models\User;
@@ -13,11 +14,12 @@ class UserController extends Controller
     function __construct()
     {
         parent::__construct();
-        $this->middleware('permission:user-list|user-edit|user-change-password|user-delete|user-status', ['only' => ['index']]);
+        $this->middleware('permission:user-list|user-edit|user-delete|user-status', ['only' => ['index']]);
         $this->middleware('permission:user-create', ['only' => ['create','store']]);
         $this->middleware('permission:user-edit|user-status|edit-profile', ['only' => ['edit','update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:user-change-password', ['only' => ['accountResetPassword']]);
+        $this->middleware('permission:user-change-password', ['only' => ['changePassword']]);
+
     }
 
     public function testing() {
@@ -65,7 +67,7 @@ class UserController extends Controller
         return view('auth_v1.register');
     }
 
-    public function resetPassword()
+    public function change_pass()
     {
         return view('auth_v1.reset-password');
     }
@@ -203,6 +205,62 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function changePassword(Request $request)
+     {
+         $requested_data = $request->all();
+         $rules = array(
+             'old_password'      => 'required',
+             'new_password'      => 'required|min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%@^&*()_+]).*$/',
+             'confirm_password'  => 'required|required_with:new_password|same:new_password'
+         );
+
+         $messages = array(
+             'new_password.regex' => 'Password must be atleast eight characters long and must use atleast one letter, number and special character.',
+         );
+         $validator = \Validator::make($request->all(), $rules, $messages);
+
+         if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+            // ->withInput($request->except('password'));
+        }else {
+
+            if (!\Hash::check($request->old_password, \Auth::user()->password)) {
+                return redirect()->back()->withErrors(['old_password' => 'Old password does not match.'])->withInput();
+            }
+
+             if ($requested_data['old_password'] == $requested_data['new_password']) {
+                return redirect()->back()->withErrors(['old_password' => 'New and old password must be different'])->withInput();
+             }
+
+             $this->UserObj->saveUpdateUser([
+                 'update_id' => \Auth::user()->id,
+                 'password' => $requested_data['new_password']
+             ]);
+
+             saveEmailLog([
+                 'user_id' => \Auth::user()->id,
+                 'email_template_id' => 2,
+                 'new_password' => $requested_data['new_password']
+             ]);
+
+             if(\Auth::check()){
+
+                $posted_data['device_id'] = \Session::getId();
+                $posted_data['user_id'] = \Auth::user()->id;
+                $posted_data['detail'] = true;
+                $get_notification_tokens = $this->FcnTokenObj->getFcmTokens($posted_data);
+                if($get_notification_tokens){
+                    $this->FcnTokenObj->deleteFCM_Token($get_notification_tokens->id);
+                }
+                \Auth::logout();
+            }
+            \Session::flash('message', 'Your password changed successfully!');
+            return redirect('/sp-login');
+         }
+     }
+
+
     public function create()
     {
         $data = array();
@@ -536,99 +594,47 @@ class UserController extends Controller
         }
     }
 
-    public function accountResetPassword(Request $request)
+    public function forgot_password(Request $request)
     {
-        echo '<pre>';print_r($request->all()); echo'</pre>';exit;
-        {
-            $params = $request->all();
-            
-           
-            $rules = array(
-                'email'             => 'required|email:rfc,dns|email',
-                'old_password'      => 'required',
-                // 'new_password'      => 'required|min:4',
-                'new_password'      => [
-                    'required', Password::min(8)
-                        ->letters()
-                        ->mixedCase()
-                        ->numbers()
-                        ->symbols()
-                        ->uncompromised()
-                ],
-                'confirm_password'  => 'required|required_with:new_password|same:new_password'
-            );
-            $validator = \Validator::make($request->all(), $rules);
-    
-            if ($validator->fails()) {
-                return $this->sendError($validator->errors()->first(), ["error" => $validator->errors()->first()]);
-            }
-            echo '<pre>sdfsdfsdf';print_r($response); echo'</pre>';exit;
-            $response = $this->authorizeUser([
-                'email' => $params['email'],
-                'password' => $params['old_password'],
-                'mode' => 'only_validate',
+        $request_data = $request->all();
+        $rules = array(
+            'email' => 'required|email|exists:users'
+        );
+
+        $messages = array(
+            'email.exists' => 'We do not recognize this email address. Please try again.',
+        );
+
+        $validator = \Validator::make($request_data, $rules, $messages);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors()->first(), $validator->errors());
+        } else {
+
+
+            $otp = substr(md5(uniqid(rand(), true)), 5, 5);
+            $userDetail = $this->UserObj->getUser([
+                'email' => $request_data['email'],
+                'detail' => true
             ]);
-            
-    
-            if ($params['old_password'] == $params['new_password']) {
-                $error_message['error'] = 'New and old password must be different.';
-                return $this->sendError($error_message['error'], $error_message);
-            }
-    
-            if (!$response) {
-                $error_message['error'] = 'Your old password is incorrect.';
-                return $this->sendError($error_message['error'], $error_message);
-            } else {
-                $new_password = $params['confirm_password'];
-                $email = $request->get('email');
-                $password = Hash::make($new_password);
-    
-                echo '<pre>';print_r($password); echo'</pre>';exit;
-                \DB::update('update users set password = ? where email = ?', [$password, $email]);
-    
-                // $data = [
-                //     'new_password' => $new_password,
-                //     'subject' => 'Reset Password',
-                //     'email' => $email
-                // ];
-    
-                $admin['id'] = 1;
-                $admin['detail'] = true;
-                $admin_data = $this->UserObj->getUser($admin);
-    
-                $user_data = User::where('email', '=', $request->get('email'))->first();
-                if ($admin_data) {
-    
-                    // this email will sent to the user who have requested to forget password
-                    $email_content = EmailTemplate::getEmailMessage(['id' => 2, 'detail' => true]);
-    
-                    $email_data = decodeShortCodesTemplate([
-                        'subject' => $email_content->subject,
-                        'body' => $email_content->body,
-                        'email_message_id' => 2,
-                        'user_id' => $user_data->id,
+
+            if($userDetail){
+                $response = $this->UserObj->saveUpdateUser([
+                    'update_id' => $userDetail->id,
+                    'email_verification_code' => $otp,
+                ]);
+                if($response){
+                    saveEmailLog([
+                        'user_id' => $response->id,
+                        'email_template_id' => 6, //OTP Verification
+                        'otp_code' =>$otp
                     ]);
-                   
-    
-                    EmailLogs::saveUpdateEmailLogs([
-                        'email_msg_id' => 8,
-                        'sender_id' => $admin_data->id,
-                        'receiver_id' => $user_data->id,
-                        'email' => $user_data->email,
-                        'subject' => $email_data['email_subject'],
-                        'email_message' => $email_data['email_body'],
-                        'send_email_after' => 1, // 1 = Daily Email
-                    ]);
+                    return $this->sendResponse($otp, 'Your password has been reset. Please check your email.');
                 }
-    
-    
-                // Mail::send('emails.reset_password', $data, function($message) use ($data) {
-                //     $message->to($data['email'])
-                //     ->subject($data['subject']);
-                // });
-    
-                return $this->sendResponse([], 'Your password has been updated.');
             }
+
+                return $this->sendResponse([], 'Your password has been updated.');
+
         }
 
             \Session::flash('message', 'Your password has been changed successfully please check you email!');
@@ -638,10 +644,10 @@ class UserController extends Controller
 
     public function authorizeUser($posted_data)
     {
-        $email = isset($posted_data['email']) ? $posted_data['email'] : '';
+        // $email = isset($posted_data['email']) ? $posted_data['email'] : '';
         $password = isset($posted_data['password']) ? $posted_data['password'] : '';
 
-        if (\Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (\Auth::attempt(['password' => $password])) {
             $user = \Auth::user();
             $response =  $user;
 

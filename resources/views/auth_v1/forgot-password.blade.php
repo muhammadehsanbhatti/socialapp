@@ -8,7 +8,7 @@
 <h4 class="card-title mb-1">Forgot Password? 🔒</h4>
 <p class="card-text mb-2">Enter your email and we'll send you instructions to reset your password</p>
 
-<form class="auth-forgot-password-form mt-2" action="{{ route('accountResetPassword') }}" method="POST">
+<form class="auth-forgot-password-form mt-2" action="{{ route('forgot_password') }}" method="POST">
     @csrf
     <div class="form-group">
         <label for="email" class="form-label">Email</label>

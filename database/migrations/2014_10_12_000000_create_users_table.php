@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->enum('user_status', ['Active', 'Block'])->default('Active');
             $table->enum('register_from', ['Web', 'Facebook', 'Gmail', 'Apple'])->default('Web');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('email_verification_code')->nullable();
             $table->enum('theme_mode', ['Light', 'Dark'])->default('Light');
             $table->double('time_spent')->default(0);
             $table->timestamp('last_seen')->nullable();

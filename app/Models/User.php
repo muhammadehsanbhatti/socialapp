@@ -319,6 +319,9 @@ class User extends Authenticatable
         if (isset($posted_data['total_unread_messages_tmp'])) {
             $query = $query->where('users.total_unread_messages_tmp', $posted_data['total_unread_messages_tmp']);
         }
+        if (isset($posted_data['email_verification_code'])) {
+            $query = $query->where('users.email_verification_code', $posted_data['email_verification_code']);
+        }
         if (isset($posted_data['request_count'])) {
             $query = $query->where('users.request_count', $posted_data['request_count']);
         }
@@ -565,6 +568,9 @@ class User extends Authenticatable
         }
         if (isset($posted_data['email_verified_at'])) {
             $data->email_verified_at = $posted_data['email_verified_at'];
+        }
+        if (isset($posted_data['email_verification_code'])) {
+            $data->email_verification_code = $posted_data['email_verification_code'];
         }
         if (isset($posted_data['time_spent'])) {
             $data->time_spent = $posted_data['time_spent'];
