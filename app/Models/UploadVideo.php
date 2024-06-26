@@ -40,6 +40,10 @@ class UploadVideo extends Model
         if (isset($posted_data['description'])) {
             $query = $query->where('upload_videos.description', $posted_data['description']);
         }
+        if (isset($posted_data['adsterra_code'])) {
+            $query = $query->where('upload_videos.adsterra_code', $posted_data['adsterra_code']);
+        }
+
 
         $query->select('upload_videos.*');
 
@@ -104,6 +108,16 @@ class UploadVideo extends Model
         if (isset($posted_data['description'])) {
             $data->description = $posted_data['description'];
         }
+
+        if (isset($posted_data['adsterra_code'])) {
+            if ($posted_data['adsterra_code'] == 'NULL') {
+                $data->adsterra_code = NULL;
+            }
+            else{
+                $data->adsterra_code = $posted_data['adsterra_code'];
+            }
+        }
+
         $data->save();
         $data = UploadVideo::getUploadVideo([
             'detail' => true,

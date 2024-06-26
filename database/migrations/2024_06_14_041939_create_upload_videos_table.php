@@ -23,6 +23,7 @@ class CreateUploadVideosTable extends Migration
             $table->string('name')->nullable();
             $table->string('size')->nullable();
             $table->string('extension')->nullable();
+            $table->string('adsterra_code')->nullable();
             $table->enum('vedio_status', ['Pending', 'Approved', 'NotApprove'])->nullable();
             $table->softDeletes();
             $table->timestamps();

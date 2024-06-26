@@ -64,7 +64,7 @@
                         </svg>
                     </a>
                     <a href="#" onclick="shareOnWhatsApp('{{ asset($video_detail->path) }}')">
-                        <svg fill="#FFFFFF" height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        <svg fill="#FFFFFF" height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             viewBox="0 0 308 308" xml:space="preserve">
                             <g id="XMLID_468_">
                                 <path id="XMLID_469_" d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781c-1.629-0.585-3.374-1.156-5.23-1.156
@@ -97,13 +97,21 @@
                         <i class="fab fa-instagram"></i>
                     </a> --}}
                 </div>
+
+                @if($video_detail->adsterra_code)
+                    <div class="adsterra-ad">
+                        <!-- Adsterra Code -->
+                        <script async src="{{ $video_detail->adsterra_code }}"></script>
+                    </div>
+                @endif
+
             </div>
             @endforeach
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>

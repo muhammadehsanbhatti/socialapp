@@ -49,13 +49,13 @@
                                         <span>Edit</span>
                                     </a>
                                     @endcan
-                                    
+
                                     @if($data['roles'] == 1)
+
                                     <form class="video_status">
                                         @method('post')
                                         @csrf
-                                        {{-- value="{{ $item->vedio_status == 'Pending'? Approved: NotApprove }} --}}
-                                        <input type="hidden" name="id" value="{{ $item['id'] }}">
+
                                         @php
                                         if ($item->vedio_status == 'Pending') {
                                             $video_status =  'Approved';
@@ -69,36 +69,55 @@
                                             $video_status =  'Pending';
                                             $video_status_value =  'Pending';
                                         }
-                                        
+
                                         @endphp
-                                        <input type="hidden" name="vedio_status" value="{{ $video_status }}">
-                                        <button type="button" name="vedio_status" class="dropdown-item" id="video_status" style="width:100%">
+                                         <input type="hidden" name="id" value="{{ $item['id'] }}">
+                                        <button type="button" name="vedio_status" value="{{ $video_status }}" class="dropdown-item" id="video_status" style="width:100%">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check mr-50"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                             <span>{{ $video_status_value }}</span>
-
                                         </button>
                                     </form>
+
+                                    <form class="add_adsterra_code">
+                                        @method('post')
+                                        @csrf
+
+                                        @php
+                                            $adsterra_value_text = "Add adsterra";
+                                            $adsterra_value = (config('app.ADSTERRA_CODE'));
+                                            if (isset($item->adsterra_code)){
+                                                $adsterra_value_text = "Remove adsterra";
+                                                $adsterra_value = "NULL";
+                                            }
+                                        @endphp
+                                        <input type="hidden" name="id" value="{{ $item['id'] }}">
+                                        <button type="button" name="adsterra_code"  value="{{ $adsterra_value }}"  class="dropdown-item" id="adsterra_code" style="width:100%">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check mr-50"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                            <span>{{ $adsterra_value_text }}</span>
+                                        </button>
+                                    </form>
+
                                     @endif
 
                                     @can('upload-social-video-delete')
-                                    <form action="{{ url('upload_social_video/'.$item['id']) }}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="submit" class="dropdown-item" id="delButton" style="width:100%">
+                                        <form action="{{ url('upload_social_video/'.$item['id']) }}" method="post">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit" class="dropdown-item" id="delButton" style="width:100%">
 
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50">
-                                                <polyline points="3 6 5 6 21 6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                            <span>Delete</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                                <span>Delete</span>
 
-                                        </button>
-                                    </form>
+                                            </button>
+                                        </form>
                                     @endcan
-                                    
 
-                                   
+
+
                                 </div>
                             {{-- @endif --}}
                         </div>
@@ -124,7 +143,7 @@
 
 </div>
 @section('upload_video_script')
-    
+
 <script>
     $(document).ready(function(){
          $.ajaxSetup({
@@ -132,13 +151,13 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    // change video status
     $(document).on('click', '#video_status', function(event){
         event.preventDefault();
         var button = $(this);
         var form = button.closest('form');
         var id = form.find('input[name="id"]').val();
-        var vedio_status = form.find('input[name="vedio_status"]').val();
-
+        var vedio_status = button.val();
         $.ajax({
             url: "{{ url('upload_social_video_verify') }}/" + id,
             type: 'POST',
@@ -146,22 +165,55 @@
                 id: id,
                 vedio_status: vedio_status
             },
-           
+
             // context: this,
             dataType: 'json',
             success: function(data) {
-                console.log("data");
-                console.log(data);
+
                 swal({
                     title: `Video status updated successfully`,
                     icon: "success",
                     buttons:"OK",
                     dangerMode: false,
                 })
-                .then(function(){ 
+                .then(function(){
                     location.reload();
                     // button.find('span').text(data.new_status);
                     // form.find('input[name="vedio_status"]').val(data.new_status == 'Approve' ? 'Approved' : 'NotApprove');
+                });
+            },
+            error: function(xhr) {
+                alert('An error occurred.');
+            }
+        });
+    });
+
+    // Add adsterra code
+    $(document).on('click', '#adsterra_code', function(event){
+
+        event.preventDefault();
+        var button = $(this);
+        var form = button.closest('form');
+        var id = form.find('input[name="id"]').val();
+        var adsterra_code = button.val();
+        $.ajax({
+            url: "{{ url('add_adsterra') }}/" + id,
+            type: 'POST',
+            data: {
+                id: id,
+                adsterra_code: adsterra_code
+            },
+            // context: this,
+            dataType: 'json',
+            success: function(data) {
+                swal({
+                    title: `Adsterra code updated successfully`,
+                    icon: "success",
+                    buttons:"OK",
+                    dangerMode: false,
+                })
+                .then(function(){
+                    location.reload();
                 });
             },
             error: function(xhr) {

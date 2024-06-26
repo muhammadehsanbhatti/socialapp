@@ -42,6 +42,8 @@ return [
     // 'debug' => (bool) env('APP_DEBUG', false),
 
     'debug' => env('APP_ENV')=='local'? true:false,
+
+    'ADSTERRA_CODE' => env('ADSTERRA_CODE', 'NULL'),
     // 'debug' => true,
 
     /*

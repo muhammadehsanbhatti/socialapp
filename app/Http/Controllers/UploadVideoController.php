@@ -43,13 +43,14 @@ class UploadVideoController extends Controller
         return view('upload_video.list', compact('data'));
     }
 
-    public function verify_social_videl(Request $request, $id)
+    public function verify_social_video(Request $request, $id)
     {
         // Assuming you have a model named Video
         $uploaded_video_detail = $this->UploadVideoObj->getUploadVideo([
             'id' => $id,
             'detail' => true
         ]);
+
 
         if ($uploaded_video_detail) {
             $this->UploadVideoObj->saveUpdateUploadVideo([
@@ -58,12 +59,33 @@ class UploadVideoController extends Controller
             ]);
             $response['status'] = true;
             $response['new_status'] = $uploaded_video_detail->vedio_status;
-            $response['message'] = 'Video status updated successfully';
-        }
 
+        }
+        $response['message'] = 'Video status updated successfully';
         return response()->json($response, 200);
     }
 
+
+    public function add_adsterra(Request $request, $id)
+    {
+        // Assuming you have a model named Video
+        $uploaded_video_detail = $this->UploadVideoObj->getUploadVideo([
+            'id' => $id,
+            'detail' => true
+        ]);
+        if ($uploaded_video_detail) {
+            $this->UploadVideoObj->saveUpdateUploadVideo([
+                'update_id' => $id,
+                'adsterra_code' => $request->adsterra_code,
+            ]);
+            $response['status'] = true;
+            $response['new_status'] = $uploaded_video_detail->adsterra_code;
+
+        }
+        $response['message'] = 'Adsterra code updated successfully';
+
+        return response()->json($response, 200);
+    }
 
     /**
      * Show the form for creating a new resource.
