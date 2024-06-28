@@ -116,7 +116,7 @@ Route::get('/send_socket', function () {
 // })->name('sp-login');
 
 Route::get('/test', [UserController::class, 'testing']);
-Route::get('/', [UserController::class, 'welcome']);
+Route::get('/', [UserController::class, 'welcome'])->name('welcome');
 // Route::get('/', [UserController::class, 'welcome']);
 Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/send_notification', [UserController::class, 'sendNotification']);

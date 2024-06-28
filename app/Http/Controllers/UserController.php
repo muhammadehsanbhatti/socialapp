@@ -48,12 +48,22 @@ class UserController extends Controller
         return view('app-chat');
     }
 
-    public function welcome()
+    public function welcome(Request $request)
     {
-        $data  = $this->UploadVideoObj->getUploadVideo([
+        $page = $request->query('page', 1); // Get the current page from query string, default to 1
+        $perPage = 5;
+
+        $data = $this->UploadVideoObj->getUploadVideo([
             'vedio_status' => 'Approved',
+            'paginate' => $perPage,
+            'page' => $page
         ]);
-        return view('default',compact('data'));
+
+        if ($request->ajax()) {
+            return view('upload_video.videos', compact('data'))->render();
+        }
+
+        return view('default', compact('data'));
         // return view('welcome');
     }
 
