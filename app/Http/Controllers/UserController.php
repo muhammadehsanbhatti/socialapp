@@ -50,21 +50,21 @@ class UserController extends Controller
 
     public function welcome(Request $request)
     {
-        $page = $request->query('page', 1); // Get the current page from query string, default to 1
-        $perPage = 5;
+        // $page = $request->query('page', 1); // Get the current page from query string, default to 1
+        // $perPage = 5;
 
+        $perPage = 5; // Number of videos per page
         $data = $this->UploadVideoObj->getUploadVideo([
             'vedio_status' => 'Approved',
-            'paginate' => $perPage,
-            'page' => $page
+            'paginate' => $perPage
         ]);
 
         if ($request->ajax()) {
-            return view('upload_video.videos', compact('data'))->render();
+            $view = view('upload_video.videos', compact('data'))->render();
+            return response()->json(['html' => $view]);
         }
 
         return view('default', compact('data'));
-        // return view('welcome');
     }
 
     public function login()
