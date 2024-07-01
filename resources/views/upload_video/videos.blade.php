@@ -1,17 +1,15 @@
-@foreach($data as $video_detail)
-    <div class="item">
-        <video controls>
-            <source src="{{ asset($video_detail->path) }}" type="video/mp4">
-        </video>
-        <div class="video-buttons">
-            <a href="{{ asset($video_detail->path) }}" download>
-                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3 17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.8215 20.4211 19.4594 20.6186 19 20.7487" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
 
-            </a>
-            <a href="#" onclick="shareOnWhatsApp('{{ asset($video_detail->path) }}')">
+@foreach($data as $video_detail)
+<div class="video-item">
+    <video controls autoplay muted>
+        <source src="{{ asset($video_detail->path) }}" type="video/mp4">
+    </video>
+    {{-- <button class="play-pause-btn">▶️</button> --}}
+
+            <div class="video-actions">
+                <button class="like-btn">❤️</button>
+            <button class="share-btn">
+                <a href="https://api.whatsapp.com/send?text={{ asset($video_detail->path) }}" >
                 <svg fill="#FFFFFF" height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     viewBox="0 0 308 308" xml:space="preserve">
                     <g id="XMLID_468_">
@@ -34,13 +32,26 @@
                             C276.546,215.678,222.799,268.994,156.734,268.994z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2"/>
                     </g>
                 </svg>
+            </a></button>
+            <button class="download-btn">
+                    <a href="{{ asset($video_detail->path) }}" download>
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3 17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.8215 20.4211 19.4594 20.6186 19 20.7487" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
             </a>
-        </div>
+        </button>
+            </div>
+            <div class="volume-control">
+            <input type="range" min="0" max="1" step="0.1" value="0" class="volume-slider">
+
+            </div>
         @if($video_detail->adsterra_code)
             <div class="adsterra-ad">
                 <!-- Adsterra Code -->
                 <script async src="{{ $video_detail->adsterra_code }}"></script>
             </div>
         @endif
-    </div>
+</div>
 @endforeach
