@@ -41,11 +41,12 @@
                 </svg>
 
             </a>
+
         </button>
+        <button class="mute-btn">🔇</button> <!-- Mute button -->
             </div>
             <div class="volume-control">
-            <input type="range" min="0" max="1" step="0.1" value="0" class="volume-slider">
-
+                <input type="range" min="0" max="1" step="0.1" value="0" class="volume-slider">
             </div>
         @if($video_detail->adsterra_code)
             <div class="adsterra-ad">

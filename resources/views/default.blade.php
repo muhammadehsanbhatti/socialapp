@@ -191,6 +191,11 @@
                     loadMoreVideos(page);
                 }
             });
+            $('#video-container').on('click', '.mute-btn', function() {
+                const video = $(this).closest('.video-item').find('video')[0];
+                video.muted = !video.muted;
+                $(this).text(video.muted ? '🔇' : '🔊');
+            });
 
             // Optional: Play video when in view
             $(document).on('scroll', function() {

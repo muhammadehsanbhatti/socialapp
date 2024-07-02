@@ -636,19 +636,15 @@ class UserController extends Controller
                 if($response){
                     saveEmailLog([
                         'user_id' => $response->id,
-                        'email_template_id' => 6, //OTP Verification
+                        'email_template_id' => 5, //OTP Verification
                         'otp_code' =>$otp
                     ]);
-                    return $this->sendResponse($otp, 'Your password has been reset. Please check your email.');
+                    \Session::flash('message', 'Your password has been reset. Please check your email');
+                    return redirect('/sp-login');
                 }
             }
 
-                return $this->sendResponse([], 'Your password has been updated.');
-
         }
-
-            \Session::flash('message', 'Your password has been changed successfully please check you email!');
-            return redirect('/sp-login');
 
     }
 
