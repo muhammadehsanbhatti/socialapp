@@ -106,6 +106,53 @@
                 display: flex;
                 flex-direction: column;
             }
+            .share-btn {
+            cursor: pointer;
+        }
+
+        .share-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            z-index: 1000;
+            width: 90%;
+            max-width: 300px;
+        }
+
+        /* .share-popup button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background: #f1f1f1;
+        } */
+
+        @media (max-width: 600px) {
+            .share-popup button {
+                font-size: 16px;
+                padding: 15px;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
         </style>
     </head>
     <body class="antialiased">
@@ -196,6 +243,7 @@
                 video.muted = !video.muted;
                 $(this).text(video.muted ? '🔇' : '🔊');
             });
+
 
             // Optional: Play video when in view
             $(document).on('scroll', function() {
