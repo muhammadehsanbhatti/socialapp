@@ -121,7 +121,7 @@ class UploadVideoController extends Controller
                 if ($request->file('upload_file')) {
                     $extension = $request->file('upload_file')->getClientOriginalExtension();
                     if ($extension == 'mp4') {
-                        $file_name = $request->file('upload_file')->getClientOriginalName() . '_' . time() . '_'  . rand(1000000, 9999999) . '.' . $extension;
+                        $file_name = time() . '_'  . rand(1000000, 9999999) . '.' . $extension;
                         $fileSize = $request->file('upload_file')->getSize();
                         $filePath = $request->file('upload_file')->storeAs('social_video', $file_name, 'public');
                         $posted_data['upload_file'] = 'storage/social_video/' . $file_name;
