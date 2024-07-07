@@ -48,10 +48,14 @@ class UploadVideo extends Model
         $query->select('upload_videos.*');
 
         $query->getQuery()->orders = null;
+        if (isset($posted_data['order_by_random']) && $posted_data['order_by_random']) {
+            $query->inRandomOrder();
+        } else {
+            $query->orderBy('id', 'DESC');
+        }
+
         if (isset($posted_data['orderBy_name'])) {
             $query->orderBy($posted_data['orderBy_name'], $posted_data['orderBy_value']);
-        } else {
-            $query->orderBy('id', 'ASC');
         }
 
         if (isset($posted_data['paginate'])) {

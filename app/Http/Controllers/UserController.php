@@ -56,8 +56,13 @@ class UserController extends Controller
         $perPage = 5; // Number of videos per page
         $data = $this->UploadVideoObj->getUploadVideo([
             'vedio_status' => 'Approved',
+            // 'order_by_random' => true,
             'paginate' => $perPage
         ]);
+
+
+        // $posted_data['order_by_random'] = true;
+
 
         if ($request->ajax()) {
             $view = view('upload_video.videos', compact('data'))->render();

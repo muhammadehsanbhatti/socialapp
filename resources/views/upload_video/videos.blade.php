@@ -1,12 +1,18 @@
 @foreach ($data as  $index =>$video_detail)
-    <div class="video-item" id="video-item-{{ $index }}">
-        <video controls autoplay muted id="video-item-{{ $index }}">
+    <div class="video-item">
+        <video autoplay muted>
             <source src="{{ asset($video_detail->path) }}" type="video/mp4">
         </video>
         {{-- <button class="play-pause-btn">▶️</button> --}}
 
         <div class="video-actions">
-            <button class="like-btn">❤️</button>
+            {{-- <button class="like-btn">❤️</button> --}}
+            @php
+                $liked = false; // Replace with your condition to determine if video is liked
+            @endphp
+            <button class="likebtn {{ $liked ? 'liked' : '' }}">
+                {!! $liked ? '&#x2665;' : '&#x2661;' !!}
+            </button>
             <button class="share-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"
                     width="48px" height="48px">
@@ -94,21 +100,5 @@
             </div>
         @endif
     </div>
-    <script>
-        $(document).ready(function() {
-            $('.share-btn').on('click', function() {
-                var videoSrc = $(this).closest('.video-item').find('video source').attr('src');
-                var shareUrl = videoSrc;
-                // alert(shareUrl);
-
-                $('#overlay').show();
-                $('#sharePopup').show();
-            });
-
-            $('#overlay, .close-popup').on('click', function() {
-                $('#overlay').hide();
-                $('#sharePopup').hide();
-            });
-        });
-    </script>
 @endforeach
+
