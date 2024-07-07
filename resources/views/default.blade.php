@@ -155,6 +155,17 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+        .like-btn {
+            font-size: 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .liked {
+            color: red;
+        }
+
 
     </style>
         </style>
@@ -202,6 +213,21 @@
                         }
                         $(response.html).each(function(index, videoHtml) {
                             $('#video-container').append(videoHtml);
+                            $('.share-btn').on('click', function() {
+                                var videoSrc = $(this).closest('.video-item').find(
+                                    'video source').attr('src');
+                                var shareUrl = videoSrc;
+                                // alert(shareUrl);
+
+                                $('#overlay').show();
+                                $('#sharePopup').show();
+                            });
+
+                            $('#overlay, .close-popup').on('click', function() {
+                                $('#overlay').hide();
+                                $('#sharePopup').hide();
+                            });
+
                         });
                         loading = false;
                     },
@@ -228,6 +254,18 @@
                 video.muted = !video.muted;
                 $(this).text(video.muted ? '🔇' : '🔊');
             });
+
+            $('#video-container').on('click', '.likebtn', function() {
+                $(this).toggleClass('liked');
+
+                if ($(this).hasClass('liked')) {
+                    $(this).html('&#x2665;'); // Filled heart
+                } else {
+                    $(this).html('&#x2661;'); // Empty heart
+                }
+
+            });
+
 
 
             // Optional: Play video when in view

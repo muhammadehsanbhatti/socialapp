@@ -1,6 +1,6 @@
 @foreach ($data as  $index =>$video_detail)
     <div class="video-item">
-        <video autoplay muted>
+        <video controls autoplay muted>
             <source src="{{ asset($video_detail->path) }}" type="video/mp4">
         </video>
         {{-- <button class="play-pause-btn">▶️</button> --}}
