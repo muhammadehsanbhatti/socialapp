@@ -110,6 +110,9 @@
             cursor: pointer;
         }
 
+        .modal-content{
+            border: none;
+        }
         .share-popup {
             display: none;
             position: fixed;
@@ -119,9 +122,9 @@
             background: #fff;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            /* padding: 20px; */
             z-index: 1000;
-            width: 90%;
+            width: 12%;
             max-width: 300px;
         }
 
