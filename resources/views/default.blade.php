@@ -11,7 +11,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <style type="text/css">
-        body,
+body,
         html {
             height: 100%;
             margin: 0;
@@ -142,21 +142,10 @@
             background: #fff;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            /* padding: 20px; */
             z-index: 1000;
             width: 12%;
             max-width: 300px;
         }
-
-        /* .share-popup button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            background: #f1f1f1;
-        } */
 
         @media (max-width: 600px) {
             .share-popup button {
@@ -164,6 +153,7 @@
                 padding: 15px;
             }
         }
+
 
         .overlay {
             display: none;
@@ -215,7 +205,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-visible/1.2.0/jquery.visible.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -252,6 +241,9 @@
 
                         });
                         loading = false;
+                    attachVideoEndedEvent();
+                    checkAndPlayVisibleVideos();
+                    // setInitialVideoState();
                     },
                     error: function() {
                         console.log("Error loading more videos");
@@ -271,14 +263,59 @@
                 });
             }
 
+            function attachVideoEndedEvent() {
+                $('.video-item video').each(function() {
+                    $(this).off('ended').on('ended', function() {
+                        var nextVideoItem = $(this).closest('.video-item').next('.video-item');
+                        if (nextVideoItem.length) {
+                            var container = $('#video-container');
+                            container.animate({
+                                scrollTop: container.scrollTop() + nextVideoItem.position().top
+                            }, 500, function() {
+                                nextVideoItem.find('video')[0].play();
+                            });
+                        } else {
+                            page++;
+                            loadMoreVideos(page);
+                        }
+                    });
+                });
+            }
+
+            function checkAndPlayVisibleVideos() {
+                $('.video-item video').each(function() {
+                    var video = $(this)[0];
+                    if ($(video).visible(true)) {
+                        video.play();
+                        pauseAllExceptCurrent(video);
+                    } else {
+                        video.pause();
+                    }
+                });
+            }
+
+            attachVideoEndedEvent();
+
             // Load more videos on scroll to the bottom
             $('#video-container').on('scroll', function() {
-                if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 100 && !
-                    loading) {
+                if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 100 && !loading) {
                     page++;
                     loadMoreVideos(page);
                 }
+                checkAndPlayVisibleVideos();
                 // pauseAllVideos();
+            });
+
+            $(document).on('scroll', function() {
+                checkAndPlayVisibleVideos();
+            });
+
+            $('#video-container').on('play', 'video', function() {
+                pauseAllExceptCurrent(this);
+            });
+
+            $('#video-container').on('click', '.video', function() {
+                this.muted = !this.muted;
             });
             $('#video-container').on('click', '.share-btn', function() {
                 var videoSrc = $(this).closest('.video-item').find('video source').attr('src');
@@ -309,23 +346,26 @@
 
             });
 
-            // Optional: Play video when in view
-            $(document).on('scroll', function() {
-                $('.video-item video').each(function() {
-                    var video = $(this)[0];
-                    var videoTop = $(this).offset().top;
-                    var videoBottom = videoTop + $(this).outerHeight();
-                    var viewportTop = $(window).scrollTop();
-                    var viewportBottom = viewportTop + $(window).height();
+            checkAndPlayVisibleVideos();
 
-                    if (videoBottom > viewportTop && videoTop < viewportBottom) {
-                        video.play();
-                        pauseAllExceptCurrent(video);
-                    } else {
-                        video.pause();
-                    }
-                });
-            });
+
+            // Optional: Play video when in view
+            // $(document).on('scroll', function() {
+            //     $('.video-item video').each(function() {
+            //         var video = $(this)[0];
+            //         var videoTop = $(this).offset().top;
+            //         var videoBottom = videoTop + $(this).outerHeight();
+            //         var viewportTop = $(window).scrollTop();
+            //         var viewportBottom = viewportTop + $(window).height();
+
+            //         if (videoBottom > viewportTop && videoTop < viewportBottom) {
+            //             video.play();
+            //             pauseAllExceptCurrent(video);
+            //         } else {
+            //             video.pause();
+            //         }
+            //     });
+            // });
         });
     </script>
 </body>
