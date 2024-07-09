@@ -253,7 +253,6 @@ body,
             }
 
 
-            // Initial load of videos
             loadMoreVideos(page);
             function pauseAllExceptCurrent(currentVideo) {
                 $('.video-item video').each(function() {
@@ -296,7 +295,6 @@ body,
 
             attachVideoEndedEvent();
 
-            // Load more videos on scroll to the bottom
             $('#video-container').on('scroll', function() {
                 if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 100 && !loading) {
                     page++;
@@ -339,9 +337,9 @@ body,
                 $(this).toggleClass('liked');
 
                 if ($(this).hasClass('liked')) {
-                    $(this).html('&#x2665;'); // Filled heart
+                    $(this).html('&#x2665;');
                 } else {
-                    $(this).html('&#x2661;'); // Empty heart
+                    $(this).html('&#x2661;');
                 }
 
             });
