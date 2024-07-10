@@ -224,6 +224,13 @@ body,
                         }
                         $(response.html).each(function(index, videoHtml) {
                             $('#video-container').append(videoHtml);
+
+                            $('.video-item video').off('click').on('click', function () {
+                                this.muted = !this.muted;
+                                $(this).siblings('.mute-btn').text(this.muted ? '🔇' : '🔊');
+                            });
+
+
                             // $('.share-btn').on('click', function() {
                             //     var videoSrc = $(this).closest('.video-item').find(
                             //         'video source').attr('src');
@@ -329,19 +336,22 @@ body,
                 $('#sharePopup').hide();
             });
 
-            $('.video-item video').off('click').on('click', function () {
-                    this.muted = !this.muted;
-                    $(this).siblings('.mute-btn').text(this.muted ? '🔇' : '🔊');
-                });
 
 
             $('#video-container').on('click', '.likebtn', function() {
                 $(this).toggleClass('liked');
+                var likedSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">' +
+                '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>' +
+                '</svg>';
+
+                var likedunlikedSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">' +
+                '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="2"' +
+                '</svg>';
 
                 if ($(this).hasClass('liked')) {
-                    $(this).html('&#x2665;'); // Filled heart
+                    $(this).html(likedSvg);
                 } else {
-                    $(this).html('&#x2661;'); // Empty heart
+                    $(this).html(likedunlikedSvg);
                 }
 
             });

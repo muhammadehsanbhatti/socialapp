@@ -3,15 +3,21 @@
         <video  autoplay muted>
             <source src="{{ asset($video_detail->path) }}" type="video/mp4">
         </video>
-        {{-- <button class="play-pause-btn">▶️</button> --}}
 
         <div class="video-actions">
-            {{-- <button class="like-btn">❤️</button> --}}
             @php
-                $liked = false; // Replace with your condition to determine if video is liked
+            $liked = false;
             @endphp
             <button class="likebtn {{ $liked ? 'liked' : '' }}">
-                {!! $liked ? '&#x2665;' : '&#x2661;' !!}
+                @if($liked)
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                @else
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                @endif
             </button>
             <button class="share-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"
