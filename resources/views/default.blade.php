@@ -8,8 +8,7 @@
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap.css') }}"> --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <style type="text/css">
 body,
         html {
@@ -177,7 +176,6 @@ body,
             color: red;
         }
     </style>
-    </style>
 </head>
 
 <body class="antialiased">
@@ -200,6 +198,27 @@ body,
     <div id="video-container" class="container-fluid">
         @include('upload_video.videos', ['data' => $data])
     </div>
+
+
+    <div class="modal fade" id="soundModal" tabindex="-1" role="dialog" aria-labelledby="soundModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="soundModalLabel">Play Videos with Sound?</h5>
+                </div>
+                <div class="modal-body">
+                    Do you want to play the videos with sound?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="muteVideos">Mute</button>
+                    <button type="button" class="btn btn-primary" id="playWithSound">Play with Sound</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="overlay" id="overlay"></div>
     {{-- </div> --}}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -211,6 +230,31 @@ body,
             var page = 1;
             var endpoint = "{{ route('welcome') }}";
             var loading = false;
+            var soundEnabled = false;
+
+            $('#soundModal').modal('show');
+
+            $('#muteVideos').on('click', function() {
+                soundEnabled = false;
+                $('#soundModal').modal('hide');
+            });
+
+            $('#playWithSound').on('click', function() {
+                soundEnabled = true;
+                $('#soundModal').modal('hide');
+                playNextVideoWithSound();
+            });
+            function playNextVideoWithSound() {
+                var currentVideo = $('#video-container video:visible')[0];
+                var nextVideo = $(currentVideo).closest('.video-item').next().find('video')[0];
+                if (nextVideo) {
+                    nextVideo.muted = !soundEnabled;
+                    nextVideo.play();
+                    nextVideo.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+
 
             function loadMoreVideos(page) {
                 loading = true;
@@ -290,14 +334,29 @@ body,
 
             function checkAndPlayVisibleVideos() {
                 $('.video-item video').each(function() {
-                    var video = $(this)[0];
-                    if ($(video).visible(true)) {
-                        video.play();
-                        pauseAllExceptCurrent(video);
+                    if ($(this).visible(true)) {
+                        this.play();
+                        this.muted = !soundEnabled;
+                        $(this).siblings('.mute-btn').text(this.muted ? '🔇' : '🔊');
                     } else {
-                        video.pause();
+                        this.pause();
                     }
                 });
+            }
+
+            function togglePlayPause(button, video) {
+                if (video.paused) {
+                    video.play();
+                    button.hide();
+                } else {
+                    video.pause();
+                    button.show();
+                }
+            }
+
+            function toggleMute(video, button) {
+                video.muted = !video.muted;
+                button.text(video.muted ? '🔇' : '🔊');
             }
 
             attachVideoEndedEvent();
@@ -310,6 +369,17 @@ body,
                 checkAndPlayVisibleVideos();
                 // pauseAllVideos();
             });
+            $('.play-pause-btn').on('click', function() {
+                var video = $(this).siblings('video')[0];
+                togglePlayPause($(this), video);
+            });
+
+
+            $('.video-item video').on('click', function() {
+                togglePlayPause($(this).siblings('.play-pause-btn'), this);
+                toggleMute(this, $(this).siblings('.mute-btn'));
+            });
+
 
             $(document).on('scroll', function() {
                 checkAndPlayVisibleVideos();
