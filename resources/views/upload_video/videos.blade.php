@@ -1,8 +1,35 @@
+<style>
+    .video-item {
+        position: relative;
+    }
+
+    .mute-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 18% !important;
+        height: 10% !important;
+        border: 2px solid black;
+        padding: 7px;
+        border-radius: 5px;
+        background-color: black;
+
+        transform: translate(-50%, -50%);
+        /* display: none;
+    }
+
+    .video-item video.muted + .mute-icon {
+        display: block; /* Show when the video is muted */
+    }
+</style>
+
 @foreach ($data as $index => $video_detail)
     <div class="video-item">
         <video  autoplay muted>
             <source src="{{ asset($video_detail->path) }}" type="video/mp4">
         </video>
+        <img src="{{ asset('app-assets/images/default-assets/mic_image.png') }}" alt="Mute Icon" class="mute-icon">
+
 
         <div class="video-actions">
             @php
@@ -119,3 +146,4 @@
         @endif
     </div>
 @endforeach
+
