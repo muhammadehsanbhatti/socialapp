@@ -108,8 +108,9 @@
                 </a>
 
             </button>
-            <div class="play-pause-btn">&#x25BA;</div>
-            {{-- <button class="mute-btn">🔇</button> <!-- Mute button --> --}}
+            {{-- <div class="play-pause-btn">&#x25BA;</div> --}}
+            <button class="volume-on-icon">🔊</button> <!-- Mute button -->
+            <button class="volume-off-icon"  style="display:none;">🔇</button> <!-- Mute button -->
         </div>
 
         @if ($video_detail->adsterra_code)
