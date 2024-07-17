@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <style type="text/css">
-body,
-        html {
+    <style>
+        body, html {
             height: 100%;
             margin: 0;
             overflow: hidden;
@@ -21,15 +20,6 @@ body,
             height: 100vh;
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
-            padding: 0;
-        }
-
-        .video-item video {
-            max-height: 100%;
-            max-width: 100%;
-            height: inherit;
-            object-fit: cover;
-            cursor: pointer;
         }
 
         .video-item {
@@ -43,13 +33,15 @@ body,
             margin: auto;
         }
 
-        .video-actions button,
-        .volume-control input {
-            margin-bottom: 10px;
+        .video-item video {
+            max-height: 100%;
+            max-width: 100%;
+            height: inherit;
+            object-fit: cover;
+            cursor: pointer;
         }
 
-        .video-actions,
-        .volume-control {
+        .video-actions, .volume-control {
             position: absolute;
             right: 10px;
             bottom: 84px;
@@ -58,8 +50,7 @@ body,
             align-items: center;
         }
 
-        .video-actions button,
-        .volume-control input {
+        .video-actions button, .volume-control input {
             margin-bottom: 10px;
             background-color: rgba(0, 0, 0, 0.5);
             border: none;
@@ -73,24 +64,12 @@ body,
             justify-content: center;
         }
 
-        .volume-control {
-            right: 80px;
-            display: none;
-        }
-
         .volume-slider {
-            -webkit-appearance: none;
             width: 100px;
             height: 5px;
             background: rgba(255, 255, 255, 0.7);
-            outline: none;
-            opacity: 0.7;
-            transition: opacity .15s ease-in-out;
             cursor: pointer;
-        }
-
-        .volume-slider:hover {
-            opacity: 1;
+            transition: opacity .15s ease-in-out;
         }
 
         .play-pause-btn {
@@ -119,43 +98,11 @@ body,
             z-index: 99;
         }
 
-        .videos_actions_bx {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .share-btn {
-            cursor: pointer;
-        }
-
-        .modal-content {
-            border: none;
-        }
-
-        .share-popup {
+        .share-popup, .overlay {
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            width: 12%;
-            max-width: 300px;
         }
-
-        @media (max-width: 600px) {
-            .share-popup button {
-                font-size: 16px;
-                padding: 15px;
-            }
-        }
-
 
         .overlay {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -174,6 +121,19 @@ body,
 
         .liked {
             color: red;
+        }
+
+        .mute-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 22%;
+            height: 8%;
+            border: 2px solid black;
+            padding: 7px;
+            border-radius: 5px;
+            background-color: black;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>

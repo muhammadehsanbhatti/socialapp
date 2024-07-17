@@ -1,27 +1,3 @@
-<style>
-    .video-item {
-        position: relative;
-    }
-
-    .mute-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 18% !important;
-        height: 10% !important;
-        border: 2px solid black;
-        padding: 7px;
-        border-radius: 5px;
-        background-color: black;
-
-        transform: translate(-50%, -50%);
-        /* display: none;
-    }
-
-    .video-item video.muted + .mute-icon {
-        display: block; /* Show when the video is muted */
-    }
-</style>
 
 @foreach ($data as $index => $video_detail)
     <div class="video-item">
@@ -135,9 +111,7 @@
             <div class="play-pause-btn">&#x25BA;</div>
             {{-- <button class="mute-btn">🔇</button> <!-- Mute button --> --}}
         </div>
-        <div class="volume-control">
-            <input type="range" min="0" max="1" step="0.1" value="0" class="volume-slider">
-        </div>
+
         @if ($video_detail->adsterra_code)
             <div class="adsterra-ad">
                 <!-- Adsterra Code -->
