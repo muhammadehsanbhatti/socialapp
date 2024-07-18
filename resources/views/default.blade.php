@@ -239,30 +239,31 @@
             var page = 1;
             var endpoint = "{{ route('welcome') }}";
             var loading = false;
-            var soundEnabled = false;
+            // var soundEnabled = false;
+            let soundEnabled = true;
 
-            $('#soundModal').modal('show');
-
-            $('#muteVideos').on('click', function() {
-                soundEnabled = false;
-                $('#soundModal').modal('hide');
-            });
-
-            $('#playWithSound').on('click', function() {
-                soundEnabled = true;
-                $('#soundModal').modal('hide');
-                playNextVideoWithSound();
-            });
-
-            function playNextVideoWithSound() {
-                var currentVideo = $('#video-container video:visible')[0];
-                var nextVideo = $(currentVideo).closest('.video-item').next().find('video')[0];
-                if (nextVideo) {
-                    nextVideo.muted = !soundEnabled;
-                    nextVideo.play();
-                    nextVideo.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
+//             $('#soundModal').modal('show');
+//
+//             $('#muteVideos').on('click', function() {
+//                 soundEnabled = false;
+//                 $('#soundModal').modal('hide');
+//             });
+//
+//             $('#playWithSound').on('click', function() {
+//                 soundEnabled = true;
+//                 $('#soundModal').modal('hide');
+//                 playNextVideoWithSound();
+//             });
+//
+//             function playNextVideoWithSound() {
+//                 var currentVideo = $('#video-container video:visible')[0];
+//                 var nextVideo = $(currentVideo).closest('.video-item').next().find('video')[0];
+//                 if (nextVideo) {
+//                     nextVideo.muted = !soundEnabled;
+//                     nextVideo.play();
+//                     nextVideo.scrollIntoView({ behavior: 'smooth' });
+//                 }
+//             }
 
 
 
@@ -279,11 +280,9 @@
                         $(response.html).each(function(index, videoHtml) {
                             $('#video-container').append(videoHtml);
 
-                            $('.video-item video').off('click').on('click', function () {
-                                this.muted = !this.muted;
-                                $(this).siblings('.volume-on-icon').toggle();
-                                $(this).siblings('.volume-off-icon').toggle();
-                            });
+                            this.muted = !soundEnabled;
+                            $(this).siblings('.volume-on-icon').toggle(!this.muted);
+                            $(this).siblings('.volume-off-icon').toggle(this.muted);
 
 
                             // $('.share-btn').on('click', function() {
@@ -352,9 +351,8 @@
                 $('.video-item video').each(function() {
                     if ($(this).visible(true)) {
                         this.play();
-                        this.muted = !soundEnabled;
-                        $(this).siblings('.volume-on-icon').toggle(!this.muted);
-                        $(this).siblings('.volume-off-icon').toggle(this.muted);
+                        $(this).siblings('.volume-on-icon').show();
+                        $(this).siblings('.volume-off-icon').hide();
                     } else {
                         this.pause();
                     }
@@ -371,9 +369,10 @@
                 }
             }
 
-            function toggleMute(video, button) {
+            function toggleMute(video) {
                 video.muted = !video.muted;
-                button.text(video.muted ? '🔇' : '🔊');
+                $(video).siblings('.volume-on-icon').toggle(!video.muted);
+                $(video).siblings('.volume-off-icon').toggle(video.muted);
             }
 
             attachVideoEndedEvent();
@@ -396,12 +395,10 @@
                 togglePlayPause($(this).siblings('.play-pause-btn'), this);
                 toggleMute(this, $(this).siblings('.volume-on-icon'));
             });
-
-        });
-
             $(document).on('scroll', function() {
                 checkAndPlayVisibleVideos();
             });
+
 
             $('#video-container').on('play', 'video', function() {
                 pauseAllExceptCurrent(this);
@@ -421,18 +418,25 @@
                 $('#overlay').hide();
                 $('#sharePopup').hide();
             });
+        });
+
+
 
 
 
             $('#video-container').on('click', '.likebtn', function() {
                 $(this).toggleClass('liked');
-                var likedSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">' +
-                '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>' +
-                '</svg>';
 
-                var likedunlikedSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">' +
-                '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="2"' +
-                '</svg>';
+                if ($(this).hasClass('liked')) {
+                    $(this).html('<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">' +
+                        '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>' +
+                        '</svg>');
+                } else {
+                    $(this).html('<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">' +
+                        '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="2"/>' +
+                        '</svg>');
+                }
+            });
            //     $('.video-item video').each(function() {
             //         var video = $(this)[0];
             //         var videoTop = $(this).offset().top;
@@ -448,7 +452,6 @@
             //         }
             //     });
             // });
-        });
     </script>
 </body>
 
